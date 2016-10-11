@@ -1,0 +1,19 @@
+title: Ask HN: Any recommendations on resources for learning one algorithm a day?
+comments:
+This is a good resource we used in a university course I took on algorithm design and analysis...
+
+http://jeffe.cs.illinois.edu/teaching/algorithms/
+
+I would probably recommend studying individual classes of algorithms, and to only move on when you feel ready, as opposed to learning algorithms in ascending difficulty (at the risk of learning them in a haphazard fashion).
+
+VisuAlgo is another cool site that has lots of algorithm visualizations... http://visualgo.net
+
+And, if you can handle the dude's voice, I recommend checking out Xoax.net's algorithm videos... http://xoax.net/comp_sci/crs/algorithms/index.php
+
+What you will probably find is that it's more valuable to gain experience designing your own algorithms using tried-and-true techniques such as dynamic programming, greediness, divide-and-conqur, linear programming, etc. Also keep in mind that data structures are closely linked to algorithms, and vice versa. If you are not familiar with big-O notation I suggest you begin there as it can be used as a measure of both an algorithm's time complexity and its data complexity.
+link: https://news.ycombinator.com/item?id=12669054
+http://jeffe.cs.illinois.edu/teaching/algorithms/
+http://visualgo.net
+http://xoax.net/comp_sci/crs/algorithms/index.php
+https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
+status: partial
