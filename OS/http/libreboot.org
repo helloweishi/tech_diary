@@ -1,0 +1,4 @@
+title: open source bios and UEFI replacement
+link: https://libreboot.org/
+tag: bios, UEFI
+status: todo
