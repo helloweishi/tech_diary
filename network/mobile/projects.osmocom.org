@@ -1,5 +1,4 @@
-tile:  Osmocom Cellular Network Infrastructure
-
+title:  Osmocom Cellular Network Infrastructure
 link: https://projects.osmocom.org/projects/cellular-infrastructure/wiki
 summary:
 https://projects.osmocom.org/attachments/download/2287/osmocom-gsm.png
