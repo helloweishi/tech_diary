@@ -1,0 +1,4 @@
+title: memory FAQ
+summary: memory detail in Linux
+link: http://nommu.org/memory-faq.txt
+status: todo
