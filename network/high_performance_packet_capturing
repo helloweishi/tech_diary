@@ -1,0 +1,8 @@
+title: Capturing Packets in Linux at a Speed of Millions of Packets per Second without Using Third Party Libraries 
+link: http://kukuruku.co/hub/nix/capturing-packets-in-linux-at-a-speed-of-millions-of-packets-per-second-without-using-third-party-libraries
+tag: network perf, throughput
+status: glimpse
+summary:
+1. Distribute Interrupts to Available Cores
+2. solve lock issue via FANOUT, which distributes packets to local queue of each core.
+3. solve buffer issue via RX_RING, which use cicular buffer.
