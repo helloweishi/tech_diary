@@ -1,0 +1,4 @@
+title: Hack The Kernel
+link: https://www.ops-class.org/
+tag: OS concept, video
+status: todo
