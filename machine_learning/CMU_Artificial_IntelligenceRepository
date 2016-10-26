@@ -2,3 +2,12 @@ title: CMU Artificial Intelligence Repository
 link: https://www.cs.cmu.edu/Groups/AI/readme.txt
 tag: edu, AI
 status: todo
+
+summary:
+The Artificial Intelligence Repository was established by Mark
+Kantrowitz in 1993 to collect files, programs and publications of
+interest to Artificial Intelligence researchers, educators, and
+students. It is an outgrowth of the Lisp Utilities Repository
+established by Mark in 1990 and his work on the FAQ (Frequently Asked
+Questions) postings for the AI, Lisp, Scheme, and Prolog newsgroups.
+The Lisp Utilities Repository has been merged into the AI Repository.
