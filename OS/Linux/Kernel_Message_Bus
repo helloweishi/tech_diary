@@ -1,0 +1,12 @@
+title: Kernel Message Bus
+link: http://www.bus1.org/bus1.html
+tag: bus, Linux
+status: todo
+summary:
+The bus1 Kernel Message Bus defines and implements a distributed object model. 
+It allows local processes to send messages to objects owned by remote processes, 
+as well as share their own objects with others. Object ownership is static and 
+cannot be transferred. Access to remote objects is prohibited, unless it was 
+explicitly granted. Processes can transmit messages to a remote object via the 
+message bus, transferring a data payload, object access rights, file descriptors, 
+or other auxiliary data.
