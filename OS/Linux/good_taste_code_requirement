@@ -1,0 +1,9 @@
+title: Applying the Linus Torvalds “Good Taste” Coding Requirement
+link: https://medium.com/@bartobri/applying-the-linus-tarvolds-good-taste-coding-requirement-99749f37684a#.vkcrzkd49
+tag:　coding, Linux
+status: done
+summary:
+"good taste" coding requirement is the elimination of edge cases, The fewer conditions you test for, the better your code “tastes”, 
+is that they take the time to conceptualize what they are building before they start. They define the boundaries of the components 
+they are working with, and how they interact with each other. They try to ensure everything fits well together, and that execution 
+flows elegantly.
