@@ -1,0 +1,7 @@
+title: Darling
+link: https://www.darlinghq.org/
+tag: MAC, wine
+status: todo
+summary: 
+Darling is a translation layer that allows you to run unmodified macOS binaries on Linux.
+In its nature, it is similar to the well-known Wine project.
