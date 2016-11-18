@@ -1,0 +1,6 @@
+title: Vectorblox ORCA
+link: https://github.com/VectorBlox/orca
+tag: fpga
+status: todo
+summary:
+ORCA is an implementation of RISC-V. It is intended to target FPGAs and can be configured as either RV32I a RV32IM code.
