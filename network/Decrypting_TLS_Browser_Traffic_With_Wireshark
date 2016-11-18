@@ -1,4 +1,8 @@
 title:　Decrypting TLS Browser Traffic With Wireshark
 link: https://jimshaver.net/2015/02/11/decrypting-tls-browser-traffic-with-wireshark-the-easy-way/
 status: decrypt SSL, wireshark
-status: todo
+status: done
+summary: 
+1, Firefox and Chrome both support logging the symmetric session key used to encrypt TLS traffic to a file.
+2, set Environment Variables “SSLKEYLOGFILE”.
+3, wireshark part.
