@@ -1,0 +1,4 @@
+title: hardenedlinux.org
+link: http://hardenedlinux.org/firmware/2016/11/17/neutralize_ME_firmware_on_sandybridge_and_ivybridge.html
+tag: security, Linux
+status: todo
