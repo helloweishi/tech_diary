@@ -1,0 +1,6 @@
+title: PouchDB 
+link: https://pouchdb.com/
+tag: js, database
+status: todo
+summary:
+PouchDB was created to help web developers build applications that work as well offline as they do online.
