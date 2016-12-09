@@ -1,0 +1,6 @@
+title: lowrisc.org
+link: http://www.lowrisc.org/
+tag: lowrisc
+status: todo
+summary: 
+A fully open-sourced, Linux-capable, System-on-a-Chip
