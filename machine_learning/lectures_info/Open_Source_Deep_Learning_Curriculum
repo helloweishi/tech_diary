@@ -1,0 +1,26 @@
+title: Open Source Deep Learning Curriculum
+link: http://www.deeplearningweekly.com/pages/open_source_deep_learning_curriculum
+tag: courses, cirriculum, deep learning
+status: done
+summary:
+Linear Algebra: https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/index.htm
+Coding The Matrix: http://codingthematrix.com/
+Statistics: https://onlinecourses.science.psu.edu/stat414/
+Bayesian thought, probabilistic graphical models: https://www.edx.org/course/computational-probability-inference-mitx-6-008-1x
+Optimization Algorithms in Machine Learning: http://videolectures.net/nips2010_wright_oaml/
+convex optimization: https://see.stanford.edu/Course/EE364A
+Machine Learning Fundamentals: https://www.edx.org/course/learning-data-introductory-machine-caltechx-cs1156x
+Mathematics of Machine Learning: https://ocw.mit.edu/courses/mathematics/18-657-mathematics-of-machine-learning-fall-2015/index.htm
+information theory: http://www.inference.phy.cam.ac.uk/itila/
+Deep Learning: https://www.coursera.org/learn/neural-networks
+hands-on course on Deep Learning in TensorFlow: https://de.udacity.com/course/deep-learning--ud730/
+Deep Learning Book: http://www.deeplearningbook.org/
+Nando de Freitas: https://www.youtube.com/user/ProfNandoDF/videos
+Topics Course on Deep Learning: https://joanbruna.github.io/stat212b/
+Stanford's CS231n: http://cs231n.stanford.edu/
+Designing, Visualizing and Understanding Deep Neural Networks: https://bcourses.berkeley.edu/courses/1453965
+CS224d: Deep Learning for Natural Language Processing: http://cs224d.stanford.edu/
+Differentiable Inference and Generative Models: http://www.cs.toronto.edu/~duvenaud/courses/csc2541/
+Papers: http://www.cl.uni-heidelberg.de/courses/ws14/deepl/
+        https://github.com/songrotek/Deep-Learning-Papers-Reading-Roadmap
+        
