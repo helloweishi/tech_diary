@@ -2,3 +2,7 @@ title: Akaros
 link: http://akaros.cs.berkeley.edu/akaros-web/news.php
 tag: parallel, high-performance, many cores
 status: todo
+summary: 
+Akaros® is an open source, GPL-licensed operating system for manycore architectures. 
+Our goal is to provide support for parallel and high-performance applications and to 
+scale to a large number of cores.
