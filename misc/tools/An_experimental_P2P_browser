@@ -1,0 +1,7 @@
+title: An experimental P2P browser
+link: https://beakerbrowser.com/
+tag: P2P, browser
+status: todo
+summary: 
+Beaker is a Peer-to-Peer Web Browser, made for users to run applications independently of hosts. Using P2P Hypermedia, 
+Beaker separates frontend apps from backend services, so that users are completely in control of their software and data. 
