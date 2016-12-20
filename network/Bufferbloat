@@ -1,0 +1,6 @@
+title: Bufferbloat
+link: https://www.bufferbloat.net/projects/bloat/wiki/
+tag: latency, router, network equipment
+status: todo
+summary:
+Bufferbloat is the undesirable latency that comes from a router or other network equipment buffering too much data.
