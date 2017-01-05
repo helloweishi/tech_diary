@@ -1,0 +1,13 @@
+title: What Every C Programmer Should Know About Undefined Behavior
+link: http://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html
+tag: undefined behavior, C
+status: done
+summary:
+1. compile options for detecting undefined behavior: the -ftrapv and -fcatch-undefined-behavior flags, 
+(-fno-strict-aliasing flag disables Type Based Alias Analysis)
+2. Stores to null and calls through null pointers are turned into a __builtin_trap() 
+call (which turns into a trapping instruction like "ud2" on x86)
+3. the Clang Static Analyzer, Klee project, and the -fcatch-undefined-behavior flag are useful tools.
+http://clang-analyzer.llvm.org/
+http://klee.llvm.org/
+4. build with "-Wall -Wextra".
