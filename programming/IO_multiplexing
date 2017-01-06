@@ -1,0 +1,17 @@
+title: I/O multiplexing -- select
+link: https://idea.popcount.org/2017-01-06-select-is-fundamentally-broken/
+tag: select, IO
+status: done
+summary: 
+select: 
+Heavyweight -- equires constantly registering and unregistering processes from the file descriptors
+Epoll() can avoid constantly registering and de-registering file descriptors via epoll_ctl
+Thundering herd problem:
+When an event happens all of the processes must be woken up.
+EPOLLEXCLUSIVE (since Linux 4.5) Sets an exclusive wakeup mode 
+for the epoll file descriptor that is being attached to the target file descriptor, fd.
+https://lwn.net/Articles/667087/
+the kqueue and IOCP interfaces.
+
+issue:
+load-balance of accepting connections for sockets listening on the same port need to do.
