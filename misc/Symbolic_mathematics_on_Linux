@@ -1,0 +1,7 @@
+title: Symbolic mathematics on Linux
+link: https://lwn.net/SubscriberLink/710537/31440d3205ea5d83/
+tag: math, tools
+status: done
+summary:
+common tools: Maxima, Sage
+Specialized packages: Cadabra,  FORM, Fermat, CoCoA, Macaulay2, TRIP.
