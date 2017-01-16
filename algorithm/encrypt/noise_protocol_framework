@@ -1,0 +1,7 @@
+title: Noise Protocol Framework
+link: https://noiseprotocol.org/
+tag: encrypt, framework
+status: todo
+summary:
+Noise is a framework for building crypto protocols. Noise protocols support mutual
+and optional authentication, identity hiding, forward secrecy, zero round-trip encryption, and other advanced features. 
