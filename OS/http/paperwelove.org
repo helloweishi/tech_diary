@@ -1,0 +1,6 @@
+title: papers we love
+link: http://paperswelove.org/
+tag: papers, meetup
+status: continunous
+summary: 
+Papers We Love is a repository of academic computer science papers and a community who loves reading them.
