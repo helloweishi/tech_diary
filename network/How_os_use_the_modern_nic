@@ -1,0 +1,9 @@
+title: How OS use the modern NIC
+link: http://dtrace.org/blogs/rm/2016/09/15/turtles-on-the-wire-understanding-how-the-os-uses-the-modern-nic/
+tag: NIC, NFV
+status: done
+summary:
+https://github.com/joyent/illumos-joyent/blob/master/usr/src/uts/common/io/mac/mac_sched.c#L29
+https://smartos.org/man/5/overlay
+https://github.com/joyent/illumos-joyent/blob/master/usr/src/uts/common/io/overlay/overlay.c#L16-L792
+www.intel.com/content/www/us/en/embedded/products/networking/xl710-10-40-controller-datasheet.html
