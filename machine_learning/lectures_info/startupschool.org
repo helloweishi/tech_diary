@@ -1,0 +1,4 @@
+title: startupschool.org
+link: https://www.startupschool.org/
+tag: startup, howto
+status: todo
