@@ -1,0 +1,4 @@
+title: sigcis.org  history of information technology and its applications
+link: http://www.sigcis.org/node/5
+tag: history, tech
+status: none
