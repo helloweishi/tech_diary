@@ -1,0 +1,4 @@
+title: weforum.org
+link: https://www.weforum.org/
+tag: economicm, news
+status: none
