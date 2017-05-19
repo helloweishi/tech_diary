@@ -1,0 +1,8 @@
+title: change dark blue color setting in shell and vim
+summary:
+VIM:
+"set background=dark" in file /etc/vim/vimrc profile works, which change dark blue to light blue
+shell:
+"dircolor -p > ~/.dircolors"
+and vim ~/.dircolor, change "DIR 01;36" to proper value, which the number represent color value.
+~/.dircolor will be checked at ~/.bashrc file
