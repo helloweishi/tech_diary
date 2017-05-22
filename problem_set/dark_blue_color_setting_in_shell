@@ -6,3 +6,7 @@ shell:
 "dircolor -p > ~/.dircolors"
 and vim ~/.dircolor, change "DIR 01;36" to proper value, which the number represent color value.
 ~/.dircolor will be checked at ~/.bashrc file
+code:
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
