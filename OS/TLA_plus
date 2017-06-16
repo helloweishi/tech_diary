@@ -1,0 +1,7 @@
+title: TLA plus
+link: https://pron.github.io/posts/tlaplus_part1
+tag: hardware, software, verify spec
+status: none
+summary: 
+TLA+ is a formal specification and verification language that helps engineers design,
+specify, reason about and verify complex, real-life algorithms and software or hardware systems.
