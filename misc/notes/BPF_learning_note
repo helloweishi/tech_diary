@@ -21,6 +21,8 @@ LLVM
 generator command(no lib, no global variable):
 clang -O2 -Wall -target bpf -c xdp-example.c -o xdp-example.o
 loader (bpf syscall):
+bcc, perf, iproute2
+sample:
 ip link set dev em1 xdp obj xdp-example.o
 
 bpf program's difference for C:
