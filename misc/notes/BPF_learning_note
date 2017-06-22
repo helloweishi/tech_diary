@@ -1,0 +1,35 @@
+title: BPF tracing note
+link: http://docs.cilium.io/en/latest/bpf/
+tag: BPF, debug, Linux
+summary: 
+
+Linux kernel configuration:
+CONFIG_CGROUP_BPF=y
+CONFIG_BPF=y
+CONFIG_BPF_SYSCALL=y
+CONFIG_NET_SCH_INGRESS=m
+CONFIG_NET_CLS_BPF=m
+CONFIG_NET_CLS_ACT=y
+CONFIG_BPF_JIT=y
+CONFIG_LWTUNNEL_BPF=y
+CONFIG_HAVE_EBPF_JIT=y
+CONFIG_BPF_EVENTS=y
+CONFIG_TEST_BPF=m
+
+compiler toolchain:
+LLVM
+generator command(no lib, no global variable):
+clang -O2 -Wall -target bpf -c xdp-example.c -o xdp-example.o
+loader (bpf syscall):
+ip link set dev em1 xdp obj xdp-example.o
+
+bpf program's difference for C:
+Everything needs to be inlined, there are no function or shared library calls available.
+Multiple programs can reside inside a single C file in different sections.
+There are no global variables allowed.
+There are no const strings or arrays allowed.
+Use of LLVM built-in functions for memset()/memcpy()/memmove()/memcmp().
+There are no loops available.-------alternative, #pragma unroll and tail call
+Partitioning programs with tail calls.
+Limited stack space of 512 bytes.
+
