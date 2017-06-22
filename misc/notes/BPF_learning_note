@@ -35,3 +35,9 @@ There are no loops available.-------alternative, #pragma unroll and tail call
 Partitioning programs with tail calls.
 Limited stack space of 512 bytes.
 
+BPF sysctls:
+/proc/sys/net/core/bpf_jit_enable: Enables or disables the BPF JIT compiler.
+0 	Disable, 1 	Enable, 2 	Enable and emit debugging
+/proc/sys/net/core/bpf_jit_harden: Enables or disables BPF JIT hardening
+0 	Disable, 1 	Enable, 2 	Enable for all users
+/proc/sys/net/core/bpf_jit_kallsyms: Enables or disables export of JITed programs as kernel symbols
