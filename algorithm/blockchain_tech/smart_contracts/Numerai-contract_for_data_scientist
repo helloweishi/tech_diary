@@ -1,0 +1,14 @@
+title: Numerai 
+link: https://github.com/numerai
+      https://medium.com/numerai/a-new-cryptocurrency-for-coordinating-artificial-intelligence-on-numerai-9251a131419a
+      https://github.com/numerai/contract
+      https://etherscan.io/address/0x1776e1F26f98b1A5dF9cD347953a26dd3Cb46671
+tag: smart-contract
+status: todo
+summary: 
+Interacting With The Contract
+
+    Numeraire follows the ERC-20 token standard. Here is the ABI to communicate with the contract: https://github.com/numerai/contract/blob/master/abi.json
+    The Numeraire contract address (numeraire.eth) is: 0x1776e1F26f98b1A5dF9cD347953a26dd3Cb46671
+    https://etherscan.io/address/0x1776e1F26f98b1A5dF9cD347953a26dd3Cb46671
+    The Numeraire contract’s entire source code is here: https://github.com/numerai/contract
