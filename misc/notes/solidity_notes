@@ -22,3 +22,4 @@ Remix provides an automatic remapping for github
 3. commenting, // or /* */; triple slash (///) or a double asterisk block(/** ... */) should 
 be used directly above function declarations or statements, used for document function.
 
+4. contract components:  State Variables, Functions, Function Modifiers, Events, Structs Types and Enum Types.
