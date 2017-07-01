@@ -23,3 +23,5 @@ Remix provides an automatic remapping for github
 be used directly above function declarations or statements, used for document function.
 
 4. contract components:  State Variables, Functions, Function Modifiers, Events, Structs Types and Enum Types.
+
+5. shifted negative values are going to be rounded towards zero, which means top bits fill with 0.
