@@ -1,0 +1,4 @@
+title: cloudcomputingpatterns.org
+link: http://www.cloudcomputingpatterns.org/
+tag: cloud
+status: none
