@@ -3,3 +3,31 @@ link: https://hackernoon.com/learning-path-for-machine-learning-engineer-a7d5dc9
 tag: ML, learning
 status: none
 summary:
+1. Courses:
+https://www.coursera.org/learn/practical-machine-learning
+https://www.coursera.org/learn/machine-learning
+http://cs231n.stanford.edu/
+https://www.udacity.com/course/deep-learning--ud730
+http://cs224d.stanford.edu/
+https://leonardoaraujosantos.gitbooks.io/artificial-inteligence/content/
+
+2. Practical part:
+https://www.kadenze.com/courses/creative-applications-of-deep-learning-with-tensorflow-iv/info
+https://github.com/nfmcclure/tensorflow_cookbook
+https://github.com/sjchoi86/Tensorflow-101
+https://github.com/lengstrom/fast-style-transfer
+https://github.com/MarvinTeichmann/tensorflow-fcn
+https://github.com/balancap/SSD-Tensorflowv
+https://github.com/CharlesShang/FastMaskRCNNhttps://github.com/CharlesShang/FastMaskRCNN
+https://github.com/dennybritz/reinforcement-learning
+https://github.com/tensorflow/magenta/tree/master/magenta/models
+https://groups.csail.mit.edu/graphics/hdrnet/
+https://github.com/udacity/self-driving-car
+
+3. FAQ:
+http://www.gitxiv.com/
+http://www.arxiv-sanity.com/
+https://arxiv.org/
+https://stackoverflow.com/
+tuning of hyperparameters of the models:
+http://scikit-learn.org/stable/modules/grid_search.html
