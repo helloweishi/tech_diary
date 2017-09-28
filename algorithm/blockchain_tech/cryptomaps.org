@@ -1,0 +1,4 @@
+title: Cryptocurrency Market State
+link: http://cryptomaps.org
+tag: Cryptocurrency
+status: none
