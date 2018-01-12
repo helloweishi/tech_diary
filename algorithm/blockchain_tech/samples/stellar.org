@@ -1,0 +1,4 @@
+title: stellar.org
+link: https://www.stellar.org/papers/stellar-consensus-protocol.pdf
+tag: blockchain, Financial
+status: none
