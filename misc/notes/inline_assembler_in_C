@@ -1,0 +1,121 @@
+title: inline assembler inside C
+link: https://gcc.gnu.org/onlinedocs/gcc/Extended-Asm.html
+tag: C, asm
+status: done
+summary:
+1, Extended Asm General format:
+asm [volatile] ( AssemblerTemplate 
+                 : OutputOperands 
+                 [ : InputOperands
+                 [ : Clobbers ] ])
+
+asm [volatile] goto ( AssemblerTemplate 
+                      : 
+                      : InputOperands
+                      : Clobbers
+                      : GotoLabels)
+asm is GNU extension, compiled with -ansi and the various -std options, use __asm__ instead.
+
+2,  total number of input + output + goto operands is limited to 30.
+
+3, Basic Asm — Assembler Instructions Without Operands
+    asm [ volatile ] ( AssemblerInstructions )
+
+4, [volatile] qualifier disables optimizations, when there is no output, output are always the same.
+
+5, Assembler Template
+  ‘%%’
+    Outputs a single ‘%’ into the assembler code.
+‘%=’
+    Outputs a number that is unique to each instance of the asm statement in the entire compilation. This option is useful when creating local labels and referring to them multiple times in a single template that generates multiple assembler instructions.
+‘%{’
+‘%|’
+‘%}’
+    Outputs ‘{’, ‘|’, and ‘}’ characters (respectively) into the assembler code. When unescaped, these characters have special meaning to indicate multiple assembler dialects
+    used in multiple assembler dialects in asm templates, option -masm={att|intel} to choose which dialects to compile
+    such as "bt{l %[Offset],%[Base] | %[Base],%[Offset]}; jc %l2"
+    "btl %[Offset],%[Base] ; jc %l2"   /* att dialect */
+    "bt %[Base],%[Offset]; jc %l2"     /* intel dialect */
+
+6, Operands 
+  [ [asmSymbolicName] ] constraint (cvariablename)
+  asmSymbolicName or use the (zero-based) position of the operand 
+  constraint: ‘=’ (a variable overwriting an existing value) or ‘+’ (when reading and writing, both as input and output)
+  ‘&’ constraint modifier on all output operands that must not overlap an input(such as memory and register in both input and output).
+ 
+ 7, Flag Output Operands
+        The flag output constraints for the x86 family are of the form ‘=@cccond’ where cond is one of the standard conditions defined in the ISA manual for jcc or setcc.
+    a
+        “above” or unsigned greater than 
+    ae
+        “above or equal” or unsigned greater than or equal 
+    b
+        “below” or unsigned less than 
+    be
+        “below or equal” or unsigned less than or equal 
+    c
+        carry flag set 
+    e
+    z
+        “equal” or zero flag set 
+    g
+        signed greater than 
+    ge
+        signed greater than or equal 
+    l
+        signed less than 
+    le
+        signed less than or equal 
+    o
+        overflow flag set 
+    p
+       parity flag set 
+    s
+        sign flag set 
+    na
+    nae
+    nb
+    nbe
+    nc
+    ne
+    ng
+    nge
+    nl
+    nle
+    no
+    np
+    ns
+    nz
+        “not” flag, or inverted versions of those above 
+
+8, Clobbers and Scratch Registers :  inline asm code may modify more than just the outputs, list all the changes may happen to addtional registers or memory
+   "cc"
+    The "cc" clobber indicates that the assembler code modifies the flags register. On some machines, GCC represents the condition codes as a specific hardware register; "cc" serves to name this register. On other machines, condition code handling is different, and specifying "cc" has no effect. But it is valid no matter what the target.
+   "memory"
+    The "memory" clobber tells the compiler that the assembly code performs memory reads or writes to items other than those listed in the input and output operands
+
+9, Goto Labels
+   labels to which the assembler code may jump, or falls through to the next statement(if this is not the case, consider using the __builtin_unreachable intrinsic after the asm statement)
+   An asm goto statement cannot have outputs
+   an asm goto statement is always implicitly considered volatile. 
+   reference a label, prefix it with ‘%l’ (lowercase ‘L’) followed by its (zero-based) position, For example, if the asm has three inputs and references two labels, refer to the first label as ‘%l3’ and the second as ‘%l4’). 
+   reference labels using the actual C label name enclosed in brackets. For example, to reference a label named carry, you can use ‘%l[carry]’. The label must still be listed in the GotoLabels section when using this approach
+
+10, Operand	‘att’	‘intel’
+          %0	%eax	eax
+          %1	$2	  2
+          %2	$.L2	OFFSET FLAT:.L2
+Modifier	Operand	‘att’	‘intel’   Description	
+z		        %z0	    l             Print the opcode suffix for the size of the current integer operand (one of b/w/l/q).	
+b	          %b0	   %al	  al      Print the QImode name of the register.	
+h		        %h0	   %ah	  ah      Print the QImode name for a “high” register.
+w		        %w0	   %ax	  ax      Print the HImode name of the register.
+k		        %k0	   %eax	  eax     Print the SImode name of the register.
+q		        %q0	   %rax	  rax     Print the DImode name of the register.
+l		        %l2	   .L2	  .L2     Print the label name with no punctuation.
+c	          %c1	    2	     2      Require a constant operand and print the constant expression with no punctuation.	
+V is a special modifier which prints the name of the full integer register without %. 
+
+11, x86 Floating-Point asm Operands
+   take care of stack pop-push properly.
+    if any input operand uses the ‘f’ constraint, all output register constraints must use the ‘&’ early-clobber modifier.
