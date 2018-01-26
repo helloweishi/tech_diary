@@ -1,0 +1,76 @@
+title: obscure C
+link: https://mort.coffee/home/obscure-c-features/
+tag: C
+status: done
+summary:
+1, The C11 standard added the _Generic keyword, which choose the expression whose associated type is compatible with a controlling expression
+2, subtracting a pointer from a pointer results in a ptrdiff_t type, which defines in stddef.h
+3, __VA_ARGS__ will replace with all the extra arguments separated by commas.
+sample:
+#define describe(name, ...) \
+		__VA_ARGS__ 
+
+#define asserteq(a, b) _Generic((b), \
+	const char *: asserteq_str, \
+	char *: asserteq_str, \
+	default: _Generic((b) - (b), \
+		ptrdiff_t: asserteq_ptr(a, b), \
+		default: asserteq_int(a, b)))(a, b)
+
+4, Local labels only available in the block they're declared in, declare a label: __label__ label_name,
+  use label_name: anywhere within the block to actually create the label, "goto label_name" from anywhere within the block.
+5, GCC adds a new unary && operator, which gets a pointer to a label as a void *, save that pointer in a variable which is accessible outside the block
+sample:
+{
+	void *somelabel;
+
+	{
+		__label__ lbl;
+		lbl:
+		somelabel = &&lbl;
+		printf("hello\n");
+	}
+
+	goto *somelabel;
+}
+
+6, __COUNTER__ is a special macro which starts at 0, and is incremented by one every time it's referenced
+7, void *dlopen(const char *filename, int flags) opens a binary (usually a shared object... usually), and returns a handle. Giving dlopen NULL as the file name gives us a handle to the main program.
+void *dlsym(void *handle, const char *symbol) returns a pointer to a symbol (for example a function) in the binary which handle refers to.
+compile option: gcc -Wl,--export-dynamic -ldl  (-Wl,--export-dynamic is necessary to tell the linker to export the symbols)
+
+sample:
+#include <stdio.h>
+#include <dlfcn.h>
+
+/* Annoyingly, the concat_ and concat macros are necessary to
+ * be able to use __COUNTER__ in an identifier name */
+#define concat_(a, b) a ## b
+#define concat(a, b) concat_(a, b)
+
+#define describe(...) \
+	void concat(test_, __COUNTER__)() { \
+		__VA_ARGS__ \
+	}
+
+describe({
+	printf("Hello from function 0\n");
+})
+
+describe({
+	printf("Hi from function 1\n");
+})
+
+int main() {
+	void *h = dlopen(NULL, RTLD_LAZY);
+	char symbol[32] = { '\0' };
+
+	for (int i = 0; i < __COUNTER__; ++i) {
+		snprintf(symbol, 31, "test_%i", i);
+		void *fptr = dlsym(h, symbol);
+		void (*f)() = fptr;
+		f();
+	}
+
+	dlclose(h);
+}
