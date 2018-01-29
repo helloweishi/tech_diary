@@ -1,5 +1,6 @@
 title: inline assembler inside C
 link: https://gcc.gnu.org/onlinedocs/gcc/Extended-Asm.html
+      https://www.ibiblio.org/gferg/ldp/GCC-Inline-Assembly-HOWTO.html
 tag: C, asm
 status: done
 summary:
@@ -15,6 +16,20 @@ asm [volatile] goto ( AssemblerTemplate
                       : Clobbers
                       : GotoLabels)
 asm is GNU extension, compiled with -ansi and the various -std options, use __asm__ instead.
++------------------------------+------------------------------------+
+|       Intel Code             |      AT&T Code                     |
++------------------------------+------------------------------------+
+| mov     eax,1                |  movl    $1,%eax                   |   
+| mov     ebx,0ffh             |  movl    $0xff,%ebx                |   
+| int     80h                  |  int     $0x80                     |   
+| mov     ebx, eax             |  movl    %eax, %ebx                |
+| mov     eax,[ecx]            |  movl    (%ecx),%eax               |
+| mov     eax,[ebx+3]          |  movl    3(%ebx),%eax              | 
+| mov     eax,[ebx+20h]        |  movl    0x20(%ebx),%eax           |
+| add     eax,[ebx+ecx*2h]     |  addl    (%ebx,%ecx,0x2),%eax      |
+| lea     eax,[ebx+ecx]        |  leal    (%ebx,%ecx),%eax          |
+| sub     eax,[ebx+ecx*4h-20h] |  subl    -0x20(%ebx,%ecx,0x4),%eax |
++------------------------------+------------------------------------+
 
 2,  total number of input + output + goto operands is limited to 30.
 
