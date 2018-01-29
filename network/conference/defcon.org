@@ -1,0 +1,4 @@
+title: defcon.org
+link: https://www.defcon.org/
+tag: hacker, conf
+status: none
