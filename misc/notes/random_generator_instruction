@@ -1,0 +1,7 @@
+title: random generator instruction
+link: http://www.electronicdesign.com/learning-resources/understanding-intels-ivy-bridge-random-number-generator
+tag: random generator
+status: done
+summary:
+1, entropy: thermal noise
+2, RDRAND instruction return a carry flag 1 ensure that the RNG is reporting proper operation
