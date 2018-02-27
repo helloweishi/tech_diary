@@ -6,3 +6,13 @@ summary:
 1. Switzerland embrace crypto-business, zug is trying to be the centre of crypto-entrepreneurs.
    refer to https://www.economist.com/news/finance-and-economics/21737255-switzerland-embraces-digital-currencies-and-crypto-entrepreneurs-banking-centre
 
+2, consensus types:
+   Proof of Elapsed Time (PoET)
+   Proof of Work (PoW) 
+   the use of voting-based methods including Redundant Byzantine Fault Tolerance (RBFT)
+   Paxo
+   
+   PoET, good at speed and scalability, but poor at finality
+   POW, good at scalability, but poor at speed and finality
+   RBFT, good at speed and finality, but poor at scalability
+ 
