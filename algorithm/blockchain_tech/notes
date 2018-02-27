@@ -11,6 +11,7 @@ summary:
    Proof of Work (PoW) 
    the use of voting-based methods including Redundant Byzantine Fault Tolerance (RBFT)
    Paxo
+   Prove of Stake (POS)
    
    PoET, good at speed and scalability, but poor at finality
    POW, good at scalability, but poor at speed and finality
