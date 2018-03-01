@@ -1,0 +1,19 @@
+title: Lightning Network
+link: https://1ml.com/
+tag: network routing, blockchain
+status: none
+summary:
+LN Development Resources: http://dev.lightning.community/ 
+LND Desktop Wallet - https://www.youtube.com/redirect?event=video_description&v=c4TjfaLgzj4&redir_token=L2c1DwzkQsSC2wJtUF1ajN_mpqt8MTUxOTk2MTMxOEAxNTE5ODc0OTE4&q=https%3A%2F%2Fgithub.com%2Flightninglabs%2Flightning-app
+ACINQ's Lightning implementation: https://github.com/ACINQ/eclair 
+Blockstream's C-Lightning implementation: https://www.youtube.com/redirect?event=video_description&v=c4TjfaLgzj4&redir_token=L2c1DwzkQsSC2wJtUF1ajN_mpqt8MTUxOTk2MTMxOEAxNTE5ODc0OTE4&q=https%3A%2F%2Fgithub.com%2FElementsProject%2Flightning 
+Zap, another Lightning wallet: http://zap.jackmallers.com/
+
+The Lightning Network : https://www.youtube.com/playlist?list=PLPQwGV1aLnTurL4wU_y3jOhBi9rrpsYyi
+Bitcoin, Lightning, and Streaming Money - https://youtu.be/gF_ZQ_eijPs 
+Advanced Bitcoin Scripting: Part 1 - https://youtu.be/8FeAXjkmDcQ 
+Advanced Bitcoin Scripting: Part 2 - https://youtu.be/pQbeBduVQ4I 
+Decentralised exchanges and counterparty risk - https://youtu.be/hi_jaw0dT9M 
+Scaling complex systems - https://youtu.be/dm9m1oQr6Ks
+MimbleWimble and Schnorr signatures - https://youtu.be/qloq75ekxv0 
+SegWit adoption - https://youtu.be/KCsTVTRk6I4 
