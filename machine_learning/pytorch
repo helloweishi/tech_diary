@@ -1,4 +1,5 @@
 title: pytorch
 link: http://pytorch.org/
+      http://blog.christianperone.com/2018/03/pytorch-internal-architecture-tour/
 tag: Tensors, python
 status: todo
