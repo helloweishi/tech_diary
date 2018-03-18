@@ -1,0 +1,4 @@
+title: docs.gimp.org
+link: https://docs.gimp.org/en/
+tag: photo, after effect
+status: none
