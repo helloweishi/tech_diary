@@ -1,0 +1,9 @@
+title: linear algebra
+link: none
+tag: math
+status: none
+summary:
+lec 12:
+1, for every graph, #nodes - #edges + #loops = 1(Euller formula)
+2, e = Ax, y = Ce, A(thranspose)y = f ==> A(transpose)CAx = f
+
