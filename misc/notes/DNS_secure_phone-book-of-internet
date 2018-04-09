@@ -1,0 +1,11 @@
+title: DNS crypto
+link: https://arstechnica.com/information-technology/2018/04/how-to-keep-your-isps-nose-out-of-your-browser-history-with-encrypted-dns/
+tag: DNS, TLS, HTTPS
+status: done
+summary:
+https://dnsprivacy.org/wiki/
+https://tools.ietf.org/html/draft-ietf-doh-dns-over-https-03
+dns-over-TLS, dns-over-HTTPS
+two option have connection establish cost, which slow down DNS query
+and there is one certficate authorization issue
+propose public key DNS query mechanism
