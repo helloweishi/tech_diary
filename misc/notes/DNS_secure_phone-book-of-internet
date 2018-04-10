@@ -9,3 +9,4 @@ dns-over-TLS, dns-over-HTTPS
 two option have connection establish cost, which slow down DNS query
 and there is one certficate authorization issue
 propose public key DNS query mechanism
+https://tools.ietf.org/html/rfc7858 --Specification for DNS over Transport Layer Security (TLS)
