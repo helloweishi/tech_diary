@@ -1,0 +1,9 @@
+title: NEON
+link: https://blog.cloudflare.com/neon-is-the-new-black/
+tag: SIMD, ARM
+status: none
+summary:
+1, NEON is the ARMv8 version of SIMD, Single Instruction Multiple Data instruction set, 
+where a single operation performs (generally) the same operation on several operands.
+
+2, NEON operates on 32 dedicated 128-bit registers
