@@ -4,3 +4,6 @@ tag: performance, hardware
 status: none
 summary:
 https://software.intel.com/en-us/forums/software-tuning-performance-optimization-platform-monitoring
+parallelism:
+https://software.intel.com/en-us/modern-code/documentation
+https://software.intel.com/en-us/modern-code
