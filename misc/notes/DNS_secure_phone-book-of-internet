@@ -5,8 +5,9 @@ status: done
 summary:
 https://dnsprivacy.org/wiki/
 https://tools.ietf.org/html/draft-ietf-doh-dns-over-https-03
-dns-over-TLS, dns-over-HTTPS
+dns-over-TLS, dns-over-HTTPS, dns-over-dtls
 two option have connection establish cost, which slow down DNS query
 and there is one certficate authorization issue
 propose public key DNS query mechanism
 https://tools.ietf.org/html/rfc7858 --Specification for DNS over Transport Layer Security (TLS)
+https://tools.ietf.org/html/rfc8094 -- dtls
