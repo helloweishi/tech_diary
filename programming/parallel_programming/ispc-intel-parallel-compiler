@@ -1,0 +1,6 @@
+title: single program, multiple data" (SPMD) 
+link: https://ispc.github.io/
+      https://github.com/ispc/ispc/
+      http://pharr.org/matt/blog/2018/04/18/ispc-origins.html
+tag: parallel, compiler, SIMD
+status: none
