@@ -1,0 +1,7 @@
+title: Process Networks and Rendezvous
+link: https://ptolemy.berkeley.edu/books/Systems/models/doc/books/systems/pn/index.html
+      https://ptolemy.berkeley.edu/books/Systems/chapters/ProcessNetworksandRendezvous.pdf
+tag: parallel, PN, Rendezvous
+status: none
+summary:
+PN, rendezvous are different from intel's thread parallel model
