@@ -1,0 +1,13 @@
+title: app for android
+link: https://piware.de/post/2018-05-01-android-degoogle/
+tag: Android, APP
+status: none
+summary:
+
+    Google Authenticator → FreeOTP
+    YouTube → NewPipe
+    BlueFilter → Night Screen
+    QR Scanner → SecScanQR
+    ConnectBot → Termux (which is actually a magnitude more powerful and also has a better terminal implementation)
+    GPS Status → SatStat
+K9 Mail, Telegram, and OsmAnd+ are available on F-Droid
