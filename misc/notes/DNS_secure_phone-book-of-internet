@@ -12,3 +12,4 @@ propose public key DNS query mechanism
 https://tools.ietf.org/html/rfc7858 --Specification for DNS over Transport Layer Security (TLS)
 https://tools.ietf.org/html/rfc8094 -- dtls
 https://tools.ietf.org/html/rfc1035 -- dns format
+https://tools.ietf.org/html/draft-ietf-quic-transport-08 --dnscrypt
