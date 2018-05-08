@@ -1,0 +1,4 @@
+title: ioccc.org
+link: http://www.ioccc.org/years.html#2018
+tag: C, trick
+status: none
