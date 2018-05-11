@@ -1,0 +1,78 @@
+title: deep learning library
+link: none
+tag: DL, framework
+status: done
+summary:
+
+Software Packages for Deep Learning
+Caffe / Torch / Theano / TensorFlow
+
+Caffe:
+http://caffe.berkeleyvision.org
+Writing in C++
+Good for training or fine-tuning feedforward models
+Main classes: Blob (store data and derivatives), layer (transforms bottom blobs to top blobs), net (many layers, computes gradients via forward/backward), solver (uses gradients to update weights)
+Read source code.
+Protocol buffers: typed JSON, define “message types” in .proto files, serialize instance to text file (.prototxt), compile classes for different languages
+Training / Finetuning:
+1, convert data (run a script)
+2, define net (edit prototxt)
+3, define solver (edit prototxt)
+4, train (with pretrained weights) (run a script)
+Step 1: convert data
+. datalayer reading from LMDB is the easiest
+. Create LMDB using convert_imageset
+. Need text file where each line is “[path/to/image.jpeg][label]”
+. create HDF5 file yourself using h5py
+Step 2: define net
+…
+Small project try it.
+
+Torch: http:// torch.ch
+From NYU + IDIAP
+Written in C and Lua
+Used a lit in FB, and deepmind
+Learn Lua: http://tylerneylon.com/a/learn-lua/
+Torch: tensors, just like numpy arrays in python
+Torch: nn module let you easily build and train neural nets
+           CUNN (GPU assistance), optim(update rule).
+Pros / Cons
+ (-) Lua
+ (-) Less plug-and-play than Caffe
+(+) lots of modular pieces that are easy to combine
+(+) easy to write your own layer types and run on GPU
+(+) Most of the library code is in Lua, eays to read
+(+) lots of pretrained models
+(-) not great for RNNs
+
+Theano: http://deeplearning.net/software /theano/
+From Yoshua Bengio’s group at University of Montreal
+Embracing computation graphs, symbolic computation
+High-level wrappers: Keras, Lasagne
+Pros / Cons
+(+) Python + numpy
+(+) computational graph is nice abstraction
+(+) RNNs fit nicely in computational graph
+(+) high level wrapper (Keras, Lasagne) ease the pain
+(-) Raw Theano is somewhat low-level
+(-) error messages can be unhelpful
+(-) large models can have long compile times
+(-) much ‘fatter’ than torch; more magic
+(-) patchy support for pretrained models
+
+TensorFlow: https://www.tensorflow.org
+From google
+Very similar to Theano – all about computation graphs
+Easy visualizations (TensorBoard)
+Multi-GPU and multi-node training
+Pros / Cons
+(+) Python + numpy
+(+) Computational graph abstraction, like theano; great for RNNs
+(+) Much faster compile times than Theano
+(+) Slightly more convenient that raw Theano ?
+(+) TensorBoard for visualization
+(+) Data AND model parallelism; best of all frameworks
+(+-) Distributed models, but not open source yet
+(-) Slower than other frameworks right now
+(-) Much ‘flatter’ than Torch; more magic
+(-) not many pretrained models
