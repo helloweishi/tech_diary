@@ -1,0 +1,34 @@
+title: open source drone
+link: https://opensource.com/article/18/2/drone-projects
+tag: drone
+status: none
+summary:
+dronecode: https://www.dronecode.org/source_code/ BSD
+            components include the PX4 autopilot flight control system,
+            the MAVLink robotics communication toolkit, and the QGroundControl
+            user interface for flight control, mission planning, and configuration
+            
+Paparazzi UAV: http://wiki.paparazziuav.org/wiki/Main_Page GPLv2: autonomous flight
+ArduPilot: http://ardupilot.org/ GPLv3: split from dronecode due to license
+           https://github.com/ArduPilot
+
+LibrePilot: https://www.librepilot.org/site/index.html :GPLv3; control multi-copters and other radio-controlled drones
+            https://bitbucket.org/librepilot/librepilot
+
+Flone: http://flone.cc/ : GPLv3 
+       https://github.com/aeracoop/flone
+
+OpenDroneMap: http://opendronemap.org/ GPLv3 
+              https://github.com/OpenDroneMap/OpenDroneMap/wiki
+
+https://github.com/MatrixPilot/MatrixPilot
+http://adapilot.likeabird.eu/
+DIY: https://diydrones.com/
+     http://dronenodes.com/how-to-build-a-drone/
+     http://www.instructables.com/id/DIY-Drones/
+     http://mydronelab.com/blog/how-to-build-a-drone.html
+     https://www.reddit.com/r/diydrones/
+     https://www.gearbest.com/diy-drone-kits-_gear/
+
+http://www.dronejournalismlab.org/
+https://github.com/DroneJournalismLab/OperationsManual
