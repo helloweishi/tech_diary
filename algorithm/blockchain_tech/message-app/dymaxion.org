@@ -1,0 +1,4 @@
+title: dymaxion.org
+link: https://dymaxion.org/essays/briarvision.html
+tag: instant message
+status: none
