@@ -1,4 +1,6 @@
 title: linuxperf
 link: http://www.brendangregg.com/linuxperf.html
+      https://cilium.readthedocs.io/en/v1.2/bpf/
+      https://qmonnet.github.io/whirl-offload/2016/09/01/dive-into-bpf/
 tag: Linux, performance
 status: none
