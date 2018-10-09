@@ -1,0 +1,9 @@
+title: bpftrace (DTrace 2.0)
+link: http://www.brendangregg.com/blog/2018-10-08/dtrace-for-linux-2018.html
+tag: trace, debug
+status: none
+summary:
+
+repo: https://github.com/iovisor/bpftrace : for  server
+tiny aternative: https://github.com/iovisor/ply: for embedded system
+summit: https://tracingsummit.org/wiki/TracingSummit2018#Schedule
