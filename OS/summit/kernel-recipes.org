@@ -1,0 +1,4 @@
+title: kernel-recipes.org
+link: https://kernel-recipes.org/en/2018/
+tag: kernel, summit
+status: none
