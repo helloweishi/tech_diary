@@ -1,0 +1,18 @@
+title: algorithm for ML
+summary:
+1, Linear Regression
+2, Logistic Regression -- coefficients that weight each input variable
+3, Linear Discriminant Analysis --limited to only two-class classification problems
+4, Classification and Regression Trees -- predictive modeling 
+5, Naive Bayes --two types of probabilities that can be calculated directly from your training data: 
+                 1) The probability of each class; and 
+                 2) The conditional probability for each class given each x value
+                 the probability model can be used to make predictions for new data using Bayes Theorem
+6, K-Nearest Neighbors -- determine the similarity between the data instances, use the Euclidean distance
+                          weekness: hang on entire training dataset
+7, Learning Vector Quantization -- choose how many training instances to hang onto and learns exactly what those instances should look like
+                                   collection of codebook vectors
+                                   
+8, Support Vector Machines
+9, Bagging and Random Forest
+10, Boosting and AdaBoost
