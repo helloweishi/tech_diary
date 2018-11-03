@@ -14,6 +14,7 @@ https://tools.ietf.org/html/rfc8094 -- dtls
 https://tools.ietf.org/html/rfc1035 -- dns format
 https://tools.ietf.org/html/draft-ietf-quic-transport-08 --dnscrypt
 https://dnsprivacy.org/wiki/display/DP/DNS+Privacy+Test+Servers --project
+facebook's crypto-UDP: https://tools.ietf.org/html/draft-herbert-transports-over-udp-00
 
 DNS for IPV6 only
 https://yeti-dns.org/
