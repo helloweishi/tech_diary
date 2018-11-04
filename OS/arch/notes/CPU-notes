@@ -4,3 +4,6 @@ CPI: Cycle Per Instruction
 IPC: Instruction Per Cycle
 ILP: instruction-level parallelism
 Clock Speed is limited by the length of longest, slowest stage in pipeline; subdividing long stage will raise latency, but throughput better.
+processor's width: the number of instructions able to issued, executed, or completed per cycle
+superpipeline: split pipeline into more stages
+superscalar: add more function units, which allow more instructions in parallel at each stage.
