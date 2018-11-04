@@ -11,3 +11,4 @@ DSP: digital signal processors
 VLIW: Very Long Instruction Word
 instruction's latency: The number of cycles between when an instruction reaches the execute stage 
                        and when its result is available for use by other instructions
+hurdle for pipeline: branches, instruction dependencies&latency
