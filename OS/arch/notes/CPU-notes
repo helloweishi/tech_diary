@@ -7,3 +7,7 @@ Clock Speed is limited by the length of longest, slowest stage in pipeline; subd
 processor's width: the number of instructions able to issued, executed, or completed per cycle
 superpipeline: split pipeline into more stages
 superscalar: add more function units, which allow more instructions in parallel at each stage.
+DSP: digital signal processors
+VLIW: Very Long Instruction Word
+instruction's latency: The number of cycles between when an instruction reaches the execute stage 
+                       and when its result is available for use by other instructions
