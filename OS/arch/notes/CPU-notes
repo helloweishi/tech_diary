@@ -12,3 +12,14 @@ VLIW: Very Long Instruction Word
 instruction's latency: The number of cycles between when an instruction reaches the execute stage 
                        and when its result is available for use by other instructions
 hurdle for pipeline: branches, instruction dependencies&latency
+
+instruction scheduling:
+out-of-order execution: Doing dynamic instruction scheduling (reordering) in the processor means the dispatch logic must be enhanced 
+                        to look at groups of instructions and dispatch them out of order as best it can to use the processor's functional units
+register renaming: processor keep a mapping of the instructions in flight at any moment and the physical registers they use
+OOO logic consumes lot of power for a relatively small performance gain, which limited it only appear at high-performance processor, not lower-power.
+
+
+
+
+
