@@ -1,0 +1,5 @@
+title: CPU notes
+summary:
+CPI: Cycle Per Instruction
+IPC: Instruction Per Cycle
+ILP: instruction-level parallelism
