@@ -19,7 +19,10 @@ out-of-order execution: Doing dynamic instruction scheduling (reordering) in the
 register renaming: processor keep a mapping of the instructions in flight at any moment and the physical registers they use
 OOO logic consumes lot of power for a relatively small performance gain, which limited it only appear at high-performance processor, not lower-power.
 
-
-
+the brainiac vs speed-demon:
+Brainiac: smart-machine end of the spectrum, with lots of OOO hardware, instruction-level parallelism;
+          costs millions of logic transistors and years of design effort to do it
+speed-demon: simpler and smaller, relying on a smart compiler and willing to sacrifice a little bit of instruction-level parallelism
+            run at higher clock speeds, but clock speed is limited mainly by power and thermal issues
 
 
