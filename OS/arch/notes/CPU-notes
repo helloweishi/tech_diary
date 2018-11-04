@@ -1,4 +1,7 @@
 title: CPU notes
+link: http://www.lighterra.com/papers/modernmicroprocessors/
+tag: CPU, design
+status: done
 summary:
 CPI: Cycle Per Instruction
 IPC: Instruction Per Cycle
@@ -30,7 +33,18 @@ power wall:  it's simply not possible to provide that much power and cooling to 
 ILP wall: combination of load latencies, cache misses, branches and dependencies between instructions
 memory wall: latency to access memory is too high
 
+X86:
+μops (pronounced "micro-ops"): dynamically decode the x86 instructions into simple, RISC-like micro-instructions,
+                               register renaming is absolutely critical due to the meager 8 registers of the x86 architecture in 32-bit mode (64-bit mode added an additional 8 registers)
+SMT: Simultaneous multi-threading; thread-level parallelism
+     very wide superscalar designs scale very badly in terms of both chip area and clock speed
+     One key problem is that the complex multiple-issue dispatch logic scales up as roughly the square of the issue width,
+     because all n candidate instructions need to be compared against every other candidate, in the order of n^2 complexity
+SoC: integrate other secondary functionality into the main CPU chip, such as I/O and networking,  dedicated video encoding/decoding hardware
+     or even an entire low-end GPU, heterogeneous design
 
+data parallelism:
+SIMD: vector processing
 
 
 
