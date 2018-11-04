@@ -25,4 +25,12 @@ Brainiac: smart-machine end of the spectrum, with lots of OOO hardware, instruct
 speed-demon: simpler and smaller, relying on a smart compiler and willing to sacrifice a little bit of instruction-level parallelism
             run at higher clock speeds, but clock speed is limited mainly by power and thermal issues
 
+power wall:  it's simply not possible to provide that much power and cooling to a silicon chip in any practical fashion,
+              even if the circuits could, in fact, operate at higher clock speeds.
+ILP wall: combination of load latencies, cache misses, branches and dependencies between instructions
+memory wall: latency to access memory is too high
+
+
+
+
 
