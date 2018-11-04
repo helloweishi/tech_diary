@@ -3,3 +3,4 @@ summary:
 CPI: Cycle Per Instruction
 IPC: Instruction Per Cycle
 ILP: instruction-level parallelism
+Clock Speed is limited by the length of longest, slowest stage in pipeline; subdividing long stage will raise latency, but throughput better.
