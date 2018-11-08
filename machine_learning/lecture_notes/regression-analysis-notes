@@ -1,0 +1,59 @@
+title: Regression Analysis
+link: https://www.listendata.com/2018/03/regression-analysis.html
+tag: regression
+status: done
+summary:
+regression analysis: model the relationship between a dependent variable and one or more independent variables(factors)
+terminologies:
+  outliers: extreme value, which will cause result fluctuate up and down.
+  Multicollinearity: independent variables are highly related to each other, which shouldn't be present in the dataset, it will cause problem
+                     in ranking independent variable's importantance
+  Heteroscedasticity: dependent variable's variability is not equal across values of an independant variable, which will cause result unrelated
+                      to what we expected.
+  Underfitting and Overfitting: training set performance gap with test set, even poorly fit on training set, called underfitting, performance much
+                      better than test set, called overfitting
+  
+regression:
+Linear Regression: dependent variable is continuous, relationship between the dependent variable and independent variables is
+                     assumed to be linear in nature
+Polynomial Regression: fit a nonlinear equation by taking polynomial functions of independent variable
+Logistic Regression: dependent variable is binary, Independent variables can be continuous or binary
+Quantile Regression: extension of linear regression, use when outliers, high skeweness and heteroscedasticity exist in the data
+                     “quantile” is the same as “percentile”
+Ridge Regression: Regularization helps to solve over fitting problem adding a penalty term to the objective function
+                  and control the model complexity using that penalty term.
+                  L1 regularization: minimize the objective function by adding a penalty term to the sum of the absolute values of coefficients
+                  L2 regularization: minimize the objective function by adding a penalty term to the sum of the squares of coefficients
+                  Ridge Regression or shrinkage regression makes use of L2 regularization, L2 is efficient in terms of computation than L1
+                  L1 has in-built feature selection for sparse feature spaces
+Lasso Regression: Lasso stands for Least Absolute Shrinkage and Selection Operator, use  L1 regularization
+Elastic Net Regression: dealing with highly correlated independent variables, combination of both L1 and L2 regularization
+Principal Components Regression (PCR): widely use when many independent variables OR multicollinearity exist,
+                                       Getting the Principal components(extract new features unrelated), then Run regression analysis on principal components
+                                       features: Dimensionality Reduction, Removal of multicollinearity
+Partial Least Squares (PLS) Regression: alternative of principal component regression, PCR creates components to explain the observed variability in the predictor
+                                        variables, without considering the response variable at all,  PLS takes the dependent variable into account, leads to models
+                                        that are able to fit the dependent variable with fewer components
+Support Vector Regression: solve both linear and non-linear models, SVM uses non-linear kernel functions (such as polynomial) to find the optimal solution
+                           for non-linear models, main idea is minimize error, individualizing the hyperplane which maximizes the margin
+Ordinal Regression: predict ranked values.
+Poisson Regression: used when dependent variable has count data.
+                    1, Predicting the number of calls in customer care related to a particular product
+                    2, Estimating the number of emergency service calls during an event
+                    dependent variable must:
+                    1, The dependent variable has a Poisson distribution.
+                    2, Counts cannot be negative.
+                    3, This method is not suitable on non-whole numbers
+Negative Binomial Regression: deals with count data, not assume distribution of count having variance equal to its mean.
+                              While poisson regression assumes the variance equal to its mean.
+Quasi Poisson Regression:  alternative to negative binomial regression, also be used for overdispersed count data
+                           handle both over-dispersion and under-dispersion
+Cox Regression: suitable for time-to-event data
+
+How to choose the correct regression model?
+1, If dependent variable is continuous and model is suffering from collinearity or there are a lot of independent variables, you can try PCR, PLS, ridge,
+   lasso and elastic net regressions. You can select the final model based on Adjusted r-square, RMSE, AIC and BIC.
+2, If you are working on count data, you should try poisson, quasi-poisson and negative binomial regression.
+3, To avoid overfitting, we can use cross-validation method to evaluate models used for prediction. We can also use ridge, lasso
+   and elastic net regressions techniques to correct overfitting issue.
+4, Try support vector regression when you have non-linear model.
