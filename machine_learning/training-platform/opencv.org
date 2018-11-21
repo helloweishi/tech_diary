@@ -1,0 +1,4 @@
+title: opencv.org
+link: https://opencv.org/opencv-4-0-0.html
+tag: library, visionary computing
+status: none
