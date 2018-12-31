@@ -18,3 +18,10 @@ facebook's crypto-UDP: https://tools.ietf.org/html/draft-herbert-transports-over
 
 DNS for IPV6 only
 https://yeti-dns.org/
+adguard:
+176.103.130.130 or 176.103.130.131 for "Default";
+176.103.130.132 or 176.103.130.134 for "Family protection".
+DNS-over-TLS:
+Use dns.adguard.com string for "Default" or dns-family.adguard.com for "Family protection".
+DNS-over-HTTPS:
+Use https://dns.adguard.com/dns-query for "Default" and https://dns-family.adguard.com/dns-query for "Family protection" mode.
