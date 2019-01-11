@@ -1,0 +1,14 @@
+title: Compiler notes
+link: http://lists.llvm.org/pipermail/cfe-dev/2018-November/060177.html
+tag: LLVM, C
+status: none
+summary:
+automatic variable initialization
+1. On the command-line:
+-ftrivial-auto-var-init=uninitialized (the default)
+-ftrivial-auto-var-init=pattern
+-ftrivial-auto-var-init=zero
+2. Using an attribute:
+ int dont_initialize_me  __attribute((trivial_auto_init("uninitialized")));
+ int zero_me __attribute((trivial_auto_init("zero")));
+ int pattern_me __attribute((trivial_auto_init("pattern")));
