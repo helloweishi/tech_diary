@@ -1,0 +1,16 @@
+title: HTTP standard nots
+link: https://blog.cloudflare.com/http-3-from-root-to-tip/
+tag: http3, quic
+status: done
+summary: 
+quic meetup: https://datatracker.ietf.org/wg/quic/meetings/
+IETF Hackathons: https://www.ietf.org/how/runningcode/hackathons/
+Internet Research Task Force: https://irtf.org/
+Internet Architecture Board: https://www.iab.org/
+RFC search: https://datatracker.ietf.org/
+RFC starts with an IETF Internet Draft (I-D) format that is submitted for consideration of adoption
+     preparation of an I-D might just be a simple reformatting exercise. I-Ds have a 6 month active
+     lifetime from the date of publish, To keep them active, new versions need to be published.
+     I-Ds are represented on the Secure Web Timeline as purple lines. Each one has a unique name
+     that takes the form of draft-{author name}-{working group}-{topic}-{version}.
+     I-D get an RFC represented as blue lines.
