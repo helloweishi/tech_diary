@@ -1,0 +1,13 @@
+title: Self-publishing a book
+link: https://digitalsuperpowers.com/blog/2019-02-16-publishing-ebook.html
+tag: book, tools
+status: none
+summary:
+reStructuredText : https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+Sphinx : https://www.sphinx-doc.org/en/master/index.html
+calibre : https://calibre-ebook.com/
+KindleGen: https://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000765211
+text files in reStructuredText,  management with git
+Sphinx to process these into the ePub format,
+Calibre for final touches,
+KindleGen to convert the manuscript into the Amazon MOBI format for upload to the Kindle store
