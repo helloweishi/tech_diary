@@ -1,0 +1,10 @@
+title: network htop
+link: none
+tag: network usage statistics
+summary:
+jnettop : stream based stats, tranfer speed
+nethogs: process based statistics, tranfer speed
+iftop: interface total count
+iptraf: connection based total count
+iptstate: connection state
+nagios: unknown
