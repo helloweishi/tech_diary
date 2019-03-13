@@ -1,0 +1,36 @@
+title: cache
+link: none
+tag: notes
+status: done
+summary:
+cache:
+Access time:
+L1: 4 clocks best case with both "hit" in L1 TLB and L1 Cache
+L2: 12 clocks
+L3: 44 clocks, clocks domain is independent with core clock
+	partition into slices (num of slices == num of cores), address determine cache line, not core own slice
+	capacity of 2MB, 2.5MB, or 3.5MB per slice
+	shared by cores, system agent, grahics, and ethnet PCIE
+
+Memory Rang type:
+determined by both memory type and range registers (MTRRs), programmed at BIOS
+			and page table entries (PTE), page directories entries (PDEs), programmed at OS
+two uncacheable types:
+UC = Uncacheable  :no prefetch, write in store buffer and later to targets
+WC = Write Combined : prefetchable, write in write combining buffer (WCB), coalesced, and later to target, any serializing instruction
+					  like IRET, IO instruction, cause WCB flush to targets
+					  video card use this memory type
+three cacheable types:
+WT = Write Through
+	read miss, fill L1, L2, L3 in S state
+	write miss, placed in post write buffer, later to target
+	write hit, update cache, mark S state, and written through to memory as well
+WP = Write Protected
+	read miss, fill L1, L2, L3 in S,F state
+	write miss, place in post write buffer, later to target, dropped by memory controller if target is main memory, unless shadowing is enabled
+	write hit, evicted from all caches, place in post write buffer, later to target, but not main memory, unless shadowing is enabled.
+WB = Write Back
+	read miss, fill L1,L2,L3 in E, S, F state depends on snoop result
+	write miss, cache line fetch from memory(or other core) via read-for-ownship(RFO) transaction, update, mark M state
+	write hit, update, mark M if E state, remain M if M state, mark M and perform RFO to kill other copies if S,F state.
+	most agressive write policy.
