@@ -1,0 +1,4 @@
+title: x86 events
+link: https://github.com/torvalds/linux/blob/510c8a899caf095cb13d09d203573deef15db2fe/tools/perf/pmu-events/arch/x86/haswell/virtual-memory.json
+tag: events
+status: none
