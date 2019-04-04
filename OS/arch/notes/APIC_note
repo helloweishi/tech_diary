@@ -1,0 +1,6 @@
+title: APIC
+link: none
+tag: APIC
+summary: 
+IO APIC:  located at physical address FEC00000
+Local APIC: addressed at physical addresses FEE00xxx
