@@ -1,0 +1,22 @@
+title: IC notes
+link: none
+tag: IC, reading list
+status: none
+summary: 
+Hennessey & Patterson's "Computer Architecture - a Quantitative Approach"
+    topics like branch prediction, instruction set design, memory/caching, and so on
+"CMOS Design, Layout & Simulation (Baker)
+    spice modeling, physical transistor construction, and a variety of digital/analog/memory circuit concepts
+https://medium.com/@veedrac/to-reinvent-the-processor-671139a4a034
+"CMOS VLSI Design: A Circuits and Systems Perspective (4th Edition)" by Weste and Harris
+    https://www.amazon.com/CMOS-VLSI-Design-Circuits-Perspective/dp/0321547748/ref=sr_1_1?keywords=cmos+vlsi+design&qid=1557732562&s=gateway&sr=8-1
+"The Art of Analog Layout (2nd Edition)" by Hastings
+    VLSI layout design: https://www.amazon.com/Art-Analog-Layout-2nd/dp/0131464108/ref=sr_1_3?keywords=art+of+analog&qid=1557732184&s=books&sr=1-3
+Harris & Harris "Digital Design and Computer Architecture"
+    underlying physics but focuses more on the logic of the whole endeavor
+https://m.youtube.com/watch?v=fWqBmmPQP40
+Mano’s Computer System Architecture
+Hill and Peterson’s Digital Systems: Hardware Organization and Design
+"Introduction to VLSI Systems"
+Sedra and Smith's "Microelectronic Circuits"
+search youtube for Onur Multu
