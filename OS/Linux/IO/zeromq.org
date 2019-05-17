@@ -1,0 +1,5 @@
+title: zeromq.org
+link: http://zeromq.org/
+      https://lwn.net/Articles/466304/ :fast IPC
+tag: IPC, IO
+status: none
