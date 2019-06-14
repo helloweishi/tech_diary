@@ -1,0 +1,7 @@
+title: gnunet.org
+link: https://gnunet.org/en/
+      https://www.laquadrature.net/en/
+      https://github.com/eduVPN/
+      https://filesender.org/
+tag: network, FOSS
+status: none
