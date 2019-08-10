@@ -1,0 +1,14 @@
+title: programmer reading list
+link: https://www.quora.com/Experienced-programmers-and-computer-scientists-what-are-some-really-old-or-even-nearly-forgotten-books-you-think-every-new-programmer-should-read/answer/Alan-Kay-11?share=1
+tag: programmer, reading
+status: done
+summary: 
+“Lisp 1.5 Programmers Manual” MIT Press
+“Computation: Finite and Infinite Machines” by Marvin Minsky (Prentice-Hall, 1967)
+“Advances in Programming and Non-Numerical Computation” (Ed. L. Fox) 
+“The Mythical Man-Month” by Fred Brooks
+“The Sciences of the Artificial” by Herb Simon
+“A Programming Language” by Ken Iverson: Lisp
+“Control Structures for Programming Languages” Dave Fisher’s 1970 CMU Thesis, first 100 pages
+“The Meta-Object Protocol” by Kiczales, first section and example
+Joe Armstrong’s PhD thesis--Erlang
