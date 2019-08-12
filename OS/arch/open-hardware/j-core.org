@@ -1,0 +1,4 @@
+title: j-core.org
+link: http://j-core.org/
+tag: FPGA, processor
+status: none
