@@ -1,0 +1,4 @@
+title: clearerthinking.org
+link: https://www.clearerthinking.org
+tag: news, thinking
+status: none
