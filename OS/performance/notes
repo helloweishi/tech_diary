@@ -3,6 +3,11 @@ link: none
 tag: performance, hardware
 status: none
 summary:
+
+tunnling methology:
+http://www.brendangregg.com/methodology.html
+https://easyperf.net/blog/2019/02/09/Top-Down-performance-analysis-methodology
+misc:
 https://software.intel.com/en-us/forums/software-tuning-performance-optimization-platform-monitoring
 parallelism:
 https://software.intel.com/en-us/modern-code/documentation
