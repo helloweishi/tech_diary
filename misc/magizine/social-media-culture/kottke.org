@@ -1,0 +1,4 @@
+title: kottke.org
+link: https://kottke.org/
+tag: social, culture
+status: none
