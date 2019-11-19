@@ -13,3 +13,39 @@ parallelism:
 https://software.intel.com/en-us/modern-code/documentation
 https://software.intel.com/en-us/modern-code
 https://www.agner.org/optimize/
+
+noise strip: 
+Disable turboboost: 
+# Intel
+echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo
+# AMD
+echo 0 > /sys/devices/system/cpu/cpufreq/boost
+validate: $ perf stat -e task-clock,cycles -- ./a.out 
+
+Disable hyper threading:
+echo 0 > /sys/devices/system/cpu/cpuX/online
+The pair of cpu N can be found in /sys/devices/system/cpu/cpuN/topology/thread_siblings_list
+validate: perf stat -r 10 -- git status
+
+Set scaling_governor to ‘performance’: save power and throttle related settings
+for i in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+do
+  echo performance > /sys/devices/system/cpu/cpu$i/cpufreq/scaling_governor
+done
+
+Set cpu affinity:
+validate: $ perf stat -e context-switches,cpu-migrations -r 10 -- git status
+          $ perf stat -r 10 -- taskset -c 0(core 0) git status 
+
+Set process priority:
+sudo nice -n -N
+validate: $ perf stat -r 10 -- sudo nice -n -5 taskset -c 1 git status
+
+Drop file system cache:
+echo 3 | sudo tee /proc/sys/vm/drop_caches
+sync
+
+Disable address space randomization:
+echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
+
+Use statistical methods to process measurements:
