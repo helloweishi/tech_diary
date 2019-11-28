@@ -1,9 +1,8 @@
 title:  Osmocom Cellular Network Infrastructure
-
 link: https://projects.osmocom.org/projects/cellular-infrastructure/wiki
       https://osmocom.org/news/120
-tag: GSM, open source
 
+tag: GSM, open source
 summary:
 https://projects.osmocom.org/attachments/download/2287/osmocom-gsm.png
 
