@@ -1,4 +1,5 @@
-title:  Osmocom Cellular Network Infrastructure 
+title:  Osmocom Cellular Network Infrastructure
+
 link: https://projects.osmocom.org/projects/cellular-infrastructure/wiki
       https://osmocom.org/news/120
 
