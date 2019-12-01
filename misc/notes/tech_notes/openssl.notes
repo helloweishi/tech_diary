@@ -1,0 +1,8 @@
+title: openssl notes
+link: none
+tag: openssl, usage
+status: none
+summary:
+1. Verify an SSL/TLS connection
+$openssl s_client -quiet -connect jvt.me:443
+
