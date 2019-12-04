@@ -1,0 +1,16 @@
+title: wifi on flight
+link: https://onezero.medium.com/what-makes-it-possible-to-browse-the-internet-at-35-000-feet-1afaea83eb5
+tag: WIFI, flight
+status: done
+summary:
+two approach:
+  1. Air to ground (ATG) system
+    https://concourse.gogoair.com/gogo-atg-4-work/
+    lower frequency (800 MHz),limited to 10 Mbps, low latency
+  2. Satellite system
+    satellite internet are Ku-band (12–18 GHz) and Ka-band (26–40 GHz)
+    bandwidth between 30 to 100 Mbps per aircraft
+    expensive
+    high latency
+    https://concourse.gogoair.com/infographic-far-gogo-2ku-data-travel/
+    
