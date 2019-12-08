@@ -1,0 +1,4 @@
+title: physicstoday.scitation.org
+link: https://physicstoday.scitation.org/journal/pto
+tag: physic
+status: none
