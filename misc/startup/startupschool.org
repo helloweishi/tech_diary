@@ -1,0 +1,4 @@
+title: startupschool.org
+link: https://www.startupschool.org/library
+tag: startup, HN
+status: none
