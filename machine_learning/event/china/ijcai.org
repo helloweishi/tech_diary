@@ -1,0 +1,4 @@
+title: ijcai.org
+link: https://www.ijcai.org/
+tag: AI, china
+status: none
