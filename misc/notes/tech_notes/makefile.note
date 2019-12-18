@@ -1,0 +1,29 @@
+title: makefile tips
+link: https://tech.davis-hansson.com/p/make/
+tag: makefile
+status: done
+summary: 
+
+SHELL := bash //specify running shell
+.ONESHELL:    //ensures each Make recipe is ran as one single shell session, rather than one new shell per line.
+.SHELLFLAGS := -eu -o pipefail -c  //bash strict mode, stop executing if there was a failure in one of the targets
+.DELETE_ON_ERROR:  // if a Make rule fails, it's target file is deleted.
+MAKEFLAGS += --warn-undefined-variables //if you are referring to Make variables that don't exist, that's probably wrong and it's good to get a warning
+MAKEFLAGS += --no-builtin-rules  //This disables the bewildering array of built in rules to automatically build Yacc grammars out of your data if you accidentally add the wrong file suffix. Remove magic, don't do things unless I tell you to, Make.
+
+ifeq ($(origin .RECIPEPREFIX), undefined)
+  $(error This Make does not support .RECIPEPREFIX. Please use GNU Make 4.0 or later)
+endif
+.RECIPEPREFIX = >  //Don't use tabs, which forces you to mix tabs and spaces, and that leads to readability issues.
+
+If you strictly want a target that generates no files, tell Make by saying it is “.PHONY”:
+Note the use of $$ instead of $ for bash variables and subshells; Make uses $ for it's own templating variables, $$ escapes it so bash sees a single $.
+
+To find all the source files, you might do something like: find src/ -type f
+out/image-id: $(shell find src -type f)
+
+It is possible to have one rule generate multiple files: Sentinel files
+out/.packed.sentinel: $(shell find src -type f)
+> mkdir -p $(@D) # expands to `mkdir -p out`  //$(@D), which refers to the directory the target should go in
+> node run webpack ..
+> touch $@  # expands to `touch out/.packed.sentinel` //$@, which refers to the target
