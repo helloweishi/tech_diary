@@ -1,0 +1,4 @@
+title: sac-home.org
+link: http://www.sac-home.org/doku.php?id=index
+tag: parallel system, array programming language
+status: none
