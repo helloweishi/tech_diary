@@ -1,0 +1,4 @@
+title: multicians.org
+link: https://www.multicians.org/devdoc.html
+tag: time sharing, OS
+status: none
