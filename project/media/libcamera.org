@@ -1,0 +1,4 @@
+title: libcamera.org
+link: http://libcamera.org/getting-started.html
+tag: camera, kit
+status: none
