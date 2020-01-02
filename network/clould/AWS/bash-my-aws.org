@@ -1,0 +1,4 @@
+title: bash-my-aws.org
+link: https://bash-my-aws.org/
+tag: cli, aws
+status: none
