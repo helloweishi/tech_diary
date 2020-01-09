@@ -1,0 +1,16 @@
+title: understanding-memory-ordering
+link: https://internalpointers.com/post/understanding-memory-ordering
+      https://www.morganclaypool.com/doi/abs/10.2200/S00346ED1V01Y201104CAC016
+      http://www.puppetmastertrading.com/images/hwViewForSwHackers.pdf
+      https://en.cppreference.com/w/cpp/atomic/memory_order
+      https://gcc.gnu.org/wiki/Atomic/GCCMM/AtomicSync
+      https://doc.rust-lang.org/nomicon/atomics.html
+      https://fgiesen.wordpress.com/2014/07/07/cache-coherency/
+      https://fgiesen.wordpress.com/2014/08/18/atomics-and-contention/
+      https://bartoszmilewski.com/2008/12/01/c-atomics-and-memory-ordering/
+      https://stackoverflow.com/questions/30958375/memory-barriers-force-cache-coherency
+      https://www.cs.utexas.edu/~bornholt/post/memory-models.html
+      https://preshing.com/20120625/memory-ordering-at-compile-time/
+tag: memory reoder
+status: none
+summary: 
