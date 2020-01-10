@@ -51,3 +51,4 @@ echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
 Use statistical methods to process measurements:
 
 scalene in python: https://github.com/emeryberger/scalene (high-performance, high-precision CPU and memory profiler)
+luciditystory (program-state visualizer) : http://symbolflux.com/luciditystory.html
