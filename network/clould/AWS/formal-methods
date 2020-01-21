@@ -1,0 +1,11 @@
+title: Fomal methods
+link: https://www.cslab.pepperdine.edu/warford/math221/How-Amazon-Web-Services-Uses-Formal-Methods.pdf
+tag: AWS, correctness verification
+status: done
+summary: 
+AWS robustness algorithm: formal methods
+background: use language Alloy to find serious bugs in the membership protocol of
+            a distributed system called Chord (MIT designed), which awarded at SIGCOMM 2011 conference
+        compare with Alloy, TLA+ specification has richer constructs of describing system states (the Paxos consensus algorithm)
+        plusCal is engineer friendly language, which can covert to TLA+ Spec
+refer to: https://lamport.azurewebsites.net/tla/tla.html
