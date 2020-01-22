@@ -1,0 +1,4 @@
+title: emacswiki.org
+link: https://www.emacswiki.org/emacs?action=browse;oldid=ScreenPlay;id=Screenplay
+tag: emacs, screenplay
+status: none
