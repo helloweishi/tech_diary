@@ -1,0 +1,37 @@
+title: local share hub among devices
+link: none
+tag: bt, server, ad-hoc
+status: todo
+summary: 
+1, torernts,DHT, Brave has a built-in torrent downloader.
+    https://webtorrent.io/, https://github.com/arvidn/libtorrent
+    https://www.ghacks.net/2019/09/20/how-to-create-a-private-torrent-using-qbittorrent/
+2, https://muwire.com/ :Easy anonymous file sharing using I2P technology
+3, https://docs.ipfs.io/concepts/dht/ , https://github.com/savoirfairelinux/opendht
+4, cloud services: https://aws.amazon.com/snowmobile/faqs/
+5, magic wormhole : https://magic-wormhole.readthedocs.io/en/latest/
+   https://github.com/psanford/wormhole-william
+   https://github.com/warner/magic-wormhole
+   https://github.com/schollz/croc
+6, AirDrop: https://github.com/seemoo-lab/opendrop, https://snapdrop.net/
+7, https://syncthing.net/ , https://github.com/syncthing/ , https://wetransfer.com/
+8, https://patchbay.pub/ , https://fbrg.xyz/, https://github.com/patchbay-pub/
+9, Netcat:    $ nc -l 4242 > dest ;And then on the sending end:   $ nc hostname 4242 < file_to_send
+10, simple server: https://github.com/svenstaro/miniserve, https://send.firefox.com/
+11, https://github.com/filebrowser/filebrowser
+    https://github.com/FiloSottile/age
+    https://github.com/dutchcoders/transfer.sh
+    https://mega.nz/
+    https://www.hightail.com/file-sharing
+    https://massive.io/
+    https://send.tresorit.com/
+    https://fex.rus.uni-stuttgart.de/
+    https://github.com/facebook/wdt/
+    https://gofile.io/welcome
+    https://jumpshare.com/
+    swisstransfer.com
+    https://justbeamit.com/
+    http://ifile.dk/
+    https://transfer.pcloud.com/
+12, megatools,  pipx install magic-wormhole
+    wormhole send /some/big/stupid/thing.tar.gz
