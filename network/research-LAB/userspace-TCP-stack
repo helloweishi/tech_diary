@@ -5,3 +5,9 @@ link: https://blog.cloudflare.com/why-we-use-the-linux-kernels-tcp-stack/
       https://savannah.nongnu.org/projects/lwip/
 tag: TCP, userspace
 status: nonbe
+summary:
+userspace TCP stack projects:
+https://www.ntop.org/products/packet-capture/pf_ring/
+https://github.com/snabbco/snabb
+https://www.dpdk.org/
+http://info.iet.unipi.it/~luigi/netmap/
