@@ -1,0 +1,7 @@
+title: userspace TCP stack
+link: https://blog.cloudflare.com/why-we-use-the-linux-kernels-tcp-stack/
+      https://www.nextplatform.com/2015/06/19/inside-a-decade-of-google-homegrown-datacenter-networks/
+      https://github.com/lkl/linux
+      https://savannah.nongnu.org/projects/lwip/
+tag: TCP, userspace
+status: nonbe
