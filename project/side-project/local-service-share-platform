@@ -1,0 +1,39 @@
+title: local service share platform
+link: none
+tag: project, platform
+status: on-going
+summary: 
+wechat API:
+https://wechatwiki.com/wechat-resources/wechat-application-development-how-to-use-wechat-api-js-sdk/
+https://developers.weixin.qq.com/miniprogram/en/dev/api/
+https://www.gupshup.io/developer/wechat-overview
+meituan:
+https://open.waimai.meituan.com/openapi_docs/
+https://github.com/Meituan-Dianping/koa-restql
+https://github.com/Code-Fly/meituan-api
+https://www.npmjs.com/package/meituan
+
+dianping:
+https://github.com/dianping/dianping-open-sdk
+https://open.dianping.com/
+https://readthedocs.org/projects/openshoppingdianping/downloads/pdf/latest/
+
+baidu:
+https://www.programmableweb.com/api/baidu
+https://medium.com/trabe/how-to-add-baidu-maps-to-your-application-without-learning-chinese-797b095ffcc8
+https://lbsyun.baidu.com/
+
+google API: 
+https://developers.google.com/apis-explorer
+
+gaode API:
+https://lbs.amap.com/
+https://geocoder.readthedocs.io/providers/Gaode.html
+
+beidou API:
+https://www.orekit.org/static/apidocs/org/orekit/gnss/attitude/BeidouGeo.html
+https://github.com/alibaba/beidou/blob/master/packages/beidou-docs/en/basic/controller.md
+https://developer.android.com/reference/android/location/GnssStatus
+
+xiecheng:
+https://github.com/hsaigei/xiecheng
