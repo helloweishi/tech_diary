@@ -1,0 +1,11 @@
+title: UVM hardware validator
+link: https://www.chipverify.com/uvm/uvm-tutorial
+tag: hardware, validation
+status: none
+summary:
+alternative: 
+SystemVerilog: An IEEE-standard language designed for defining hardware at the Register Transfer Level (RTL), as well as the test benches to test that hardware
+DVT Eclipse: A plugin for the (previously) popular IDE Eclipse that works with SystemVerilog. It supports syntax highlighting, custom build scripts, etc.
+Synopsys VCS: A SystemVerilog compiler, simulator, and synthesizer. Proprietary. A license costs a boat-load of money.
+
+EDA(Electronic Design Automation) vendors: Synopsys, Cadence, and Mentor
