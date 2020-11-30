@@ -1,0 +1,99 @@
+title: tricks
+link: https://stackoverflow.com/questions/599365/what-is-your-favorite-c-programming-trick
+tag: C, tricks
+status: done
+summary: 
+1. /* Force a compilation error if condition is true */
+#define BUILD_BUG_ON(condition) ((void)sizeof(char[1 - 2*!!(condition)]))
+like: BUILD_BUG_ON((sizeof(struct mystruct) % 8) != 0);
+
+2. C99 offers some really cool stuff using anonymous arrays:
+Removing pointless variables
+{
+    int yes=1;
+    setsockopt(yourSocket, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int));
+}
+becomes
+
+setsockopt(yourSocket, SOL_SOCKET, SO_REUSEADDR, (int[]){1}, sizeof(int));
+
+Passing a Variable Amount of Arguments
+
+void func(type* values) {
+    while(*values) {
+        x = *values++;
+        /* do whatever with x */
+    }
+}
+
+func((type[]){val1,val2,val3,val4,0});
+Static linked lists
+
+int main() {
+    struct llist { int a; struct llist* next;};
+    #define cons(x,y) (struct llist[]){{x,y}}
+    struct llist *list=cons(1, cons(2, cons(3, cons(4, NULL))));
+    struct llist *p = list;
+    while(p != 0) {
+        printf("%d\n", p->a);
+        p = p->next;
+    }
+}
+
+3. 
+double normals[][] = {
+  #include "normals.txt"
+};
+
+4. loop unrolling: https://www.lysator.liu.se/c/duffs-device.html
+
+5. using __FILE__ and __LINE__  __FUNCTION__ __PRETTY_FUNCTION__ for debugging
+
+6. 
+typedef struct{
+    int value;
+    int otherValue;
+} s;
+
+s test = {.value = 15, .otherValue = 16};
+
+/* or */
+int a[100] = {1,2,[50]=3,4,5,[23]=6,7};
+
+7. redefined return to find a tricky stack corruption bug.
+#define return DoSomeStackCheckStuff, return
+
+8.
+#define print_dec(var)  printf("%s=%d\n",#var,var);
+print_dec(counter);
+
+9. Declaring array's of pointer to functions for implementing finite state machines.
+
+int (* fsm[])(void) = { ... }
+
+10.
+Another nice pre-processor "trick" is to use the "#" character to print debugging expressions. For example:
+
+#define MY_ASSERT(cond) \
+  do { \
+    if( !(cond) ) { \
+      printf("MY_ASSERT(%s) failed\n", #cond); \
+      exit(-1); \
+    } \
+  } while( 0 )
+edit: the code below only works on C++. Thanks to smcameron and Evan Teran.
+
+Yes, the compile time assert is always great. It can also be written as:
+
+#define COMPILE_ASSERT(cond)\
+     typedef char __compile_time_assert[ (cond) ? 0 : -1]
+
+11.
+#if TESTMODE == 1    
+    debug=1;
+    while(0);     // Get attention
+#endif
+The while(0); has no effect on the program, but the compiler will issue a warning about "this does nothing", which is enough to get me to go look at the offending line and then see the real reason I wanted to call attention to it.
+
+12. concept of container_of
+Have a look on include/linux/list.h for real-life examples.
