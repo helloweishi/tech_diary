@@ -1,0 +1,13 @@
+title: none
+link: none
+tag: note, ml, learning
+status: on-going
+summary: 
+
+text book: https://www.deeplearningbook.org/ 
+advanced: https://www.reddit.com/r/MachineLearning/comments/fdw0ax/d_advanced_courses_update/
+Q&A: https://www.reddit.com/r/learnmachinelearning/
+after MIT 6.S191
+getting familiar with Tensorflow ot PyTorch, then 
+Stanford CS231n and Stanford CS224 
+For learning model implementions in Keras you can also use Deep Learning with Python by Francois Chollet.
