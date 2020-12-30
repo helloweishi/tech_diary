@@ -1,0 +1,86 @@
+title: SBC hardware kit
+link: https://blog.jmdawson.co.uk/9-raspberry-pi-alternatives-in-2021-hackboard-zimaboard-rockpi-odroid-and-more/#NVIDIA_Jetson_Nano
+tag: hardware, board
+status: none
+summary: 
+Raspberry Pi alternatives
+
+Hackboard 2: https://www.crowdsupply.com/hackboard/hb2
+Dual Core Intel Celeron N4020 CPU
+4GB DDR4 RAM
+64GB EMMC
+2x M.2 slots
+Gigabit Ethernet
+3x USB 3.0 Type B ports
+HDMI
+Audio Jack
+40 pin Pi compatible GPIO
+Wifi and bluetooth
+
+ZimaBoard: mini home server: https://blog.jmdawson.co.uk/zimaboard-a-70-single-board-home-server/ : https://www.zimaboard.com/
+Spec	ZimaBoard 216	            ZimaBoard 832
+CPU	Intel Celeron N3350	        Intel Celeron N3450
+RAM	2GB LPDDR4	                8G LPDDR4
+Onboard Storage	16GB eMMC	      32GB eMMC
+HDD/SSD	2x SATA 6.0 Ports	      2x SATA 6.0 Ports
+LAN	2x GbE Ports	              2x GbE Ports
+USB	2x USB 3.0 Ports	          2x USB 3.0 Ports
+PCI-E	1x PCIe 2.0 4x	          1x PCIe 2.0 4x
+Display	1x Mini Display Port 1.2	1x Mini Display Port 1.2
+TDP	6w	6w
+Dimensions	120 x 74.5 x 25 mm	120 x 74.5 x 25 mm
+
+RockPi 4 Model B: https://www.amazon.co.uk/gp/product/B07XD8HZBY/ref=as_li_tl?ie=UTF8&camp=1634&creative=6738&creativeASIN=B07XD8HZBY&linkCode=as2&tag=jmdawsonblog1-21&linkId=1026f70c5b125cfadf15c563c959d9bf
+3.5mm Audio Jack
+802.11 ac wifi
+Bluetooth 5.0
+2x USB 3.0
+2x USB 2.0
+GbE NIC with PoE Support (Additional HAT required for POE)
+
+ODROID-H2+: https://www.odroid.co.uk/ODroid-H2 : https://www.hardkernel.com/shop/odroid-h2plus/
+Intel Quad-core processor J4115 (14nm) with 4MiB Cache, up to 2.5Ghz(Single Thread) or 2.3Ghz(Multi Thread)
+Dual-channel Memory DDR4-PC19200 (2400MT/s)
+Total 32GiB RAM Space with two SO-DIMM slots
+4 x PCIe 2.0 for one M.2 NVMe storage
+2 x 2.5Gbit Ethernet ports
+2 x SATA 3.0
+SSE4.2 accelerator (SMM, FPU, NX, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AES)
+Intel UHD Graphics 600 (Gen9.5 LP GT1) up to 700Mhz
+HDMI 2.0 and DP 1.2 multiple 4K/60Hz video outputs
+RTC / BIOS backup battery is included
+
+NanoPi R4S: https://www.friendlyarm.com/index.php?route=product/product&product_id=284
+1.8Ghz 6 Core 64Bit Rockchip RK3399 CPU
+1GB DDR3 or 4GB LPDDR4 RAM
+MicroSD Storage
+Dual Gigabit NICs
+2x USB 3.0 Type A
+MicroSD Card Storage
+
+ZeroPi: https://www.friendlyarm.com/index.php?route=product/product&product_id=266&search=zeropi&description=true&category_id=0&sub_category=true
+1.2Ghz Quad Core Allwinner H3 CPU
+512MB DDR3 RAM
+MicroSD Slot for storage
+Gigabit Ethernet
+1x USB 2.0
+
+NVIDIA Jetson Nano: https://www.amazon.co.uk/gp/product/B08J157LHH/ref=as_li_tl?ie=UTF8&camp=1634&creative=6738&creativeASIN=B08J157LHH&linkCode=as2&tag=jmdawsonblog1-21&linkId=5fccf89294b3c2fbd9e717042f2bd603
+128 Core Maxwell GPU
+1.43GHz Quad Core A57 CPU
+4GB LPDDR4 RAM
+MicroSD Storage
+Gigabit Ethernet
+HDMI
+
+Asus Tinker Board: 
+Rockchip Quad-Core RK3288 processor
+2GB Dual Channel DDR3
+MicroSD Storage
+802.11 WIFI
+Bluetooth 4.0
+Gigabit Ethernet
+40-pin Pi compatible GPIO
+
+Sipeed XuanTie C906: RISC-V: http://www.sipeed.com/
+
