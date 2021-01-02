@@ -1,5 +1,17 @@
 title: Dynamic Robot
 link: https://allshire.org/getting-started-robotics/
-      https://open-dynamic-robot-initiative.github.io/
 tag: robot, dynamic
 status: none
+
+summary:
+hardware:
+https://www.onshape.com/en/
+https://open-dynamic-robot-initiative.github.io/
+
+software:
+https://jslee02.github.io/awesome-robotics-libraries/
+https://www.ros.org/install/
+https://docs.ray.io/en/latest/rllib.html
+
+VC for Transportation:
+https://www.trucks.vc/
