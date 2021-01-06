@@ -1,0 +1,84 @@
+title: Understanding ld-linux.so.2
+link: http://www.cs.virginia.edu/~dww4s/articles/ld_linux.html
+tag: ld
+post: 
+Understanding ld-linux.so.2
+ld-linux.so.2 is linux's dynamic loader. This document attempt to give an overview of how ld-linux.so.2 interacts with Linux and the application being invoked.
+
+What is ld-linux.so?
+Most modern programs are dynamically linked. When a dynamically linked application is loaded by the operating system, it must locate and load the dynamic libraries it needs for execution. On linux, that job is handled by ld-linux.so.2. You can see the libraries used by a given application with the ldd command:
+
+$ ldd `which ls`
+      linux-gate.so.1 =>  (0xb7fff000)
+      librt.so.1 => /lib/librt.so.1 (0x00b98000)
+      libacl.so.1 => /lib/libacl.so.1 (0x00769000)
+      libselinux.so.1 => /lib/libselinux.so.1 (0x00642000)
+      libc.so.6 => /lib/libc.so.6 (0x007b2000)
+      libpthread.so.0 => /lib/libpthread.so.0 (0x00920000)
+      /lib/ld-linux.so.2 (0x00795000)
+      libattr.so.1 => /lib/libattr.so.1 (0x00762000)
+      libdl.so.2 => /lib/libdl.so.2 (0x0091a000)
+      libsepol.so.1 => /lib/libsepol.so.1 (0x0065b000)
+When ls is loaded, the OS passes control to ld-linux.so.2 instead of normal entry point of the application. ld-linux.so.2 searches for and loads the unresolved libraries, and then it passes control to the application starting point.
+
+The ld-linux.so.2 man page gives a high-level overview of the dynamic linker. It is the runtime component for the linker (ld) which locates and loads into memory the dynamic libraries used by the applicaiton. Normally the dynamic linker is implicitly specified during the link. The ELF specification provides the functionality for dynamic linking. GCC includes a special ELF program header called INTERP, which has a p_type of PT_INTERP. This header specifies the path to the interpreter. You can examine the program headers of a given program with the readelf command:
+
+$ readelf -l a.out
+
+Elf file type is EXEC (Executable file)
+Entry point 0x8048310
+There are 9 program headers, starting at offset 52
+
+Program Headers:
+  Type           Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
+  PHDR           0x000034 0x08048034 0x08048034 0x00120 0x00120 R E 0x4
+  INTERP         0x000154 0x08048154 0x08048154 0x00013 0x00013 R   0x1
+      [Requesting program interpreter: /lib/ld-linux.so.2]
+  LOAD           0x000000 0x08048000 0x08048000 0x004cc 0x004cc R E 0x1000
+  LOAD           0x000f0c 0x08049f0c 0x08049f0c 0x0010c 0x00110 RW  0x1000
+. . .
+The ELF specification requires that if a PT_INTERP section is present, the OS must create a process image of the of the interpreter's file segments, instead of the application's. Control is then past to the interpreter, which is responisble for loading the dynamic libraries. The spec offers some amount of flexiblity in how control may be given. For x86/Linux, the argument passed to the dynamic loader is a pointer to an mmap'd section.
+
+Build Details
+Glibc is responsible for creating ld-linux.so.2. In glibc version 2.3.2, the file is created with the following command:
+
+gcc -nostdlib -nostartfiles -shared \
+    -o /home/dww4s/packages/glibc-build/elf/ld.so \
+    -Wl,-z,combreloc -Wl,-z,defs \
+    /home/dww4s/packages/glibc-build/elf/librtld.os \
+    -Wl,--version-script=/home/dww4s/packages/glibc-build/ld.map \
+    -Wl,-soname=ld-linux.so.2 \
+    -T /home/dww4s/packages/glibc-build/elf/ld.so.lds
+This builds a shared library (via the -shared flag) called ld.so, which is eventually symbolically linked as ld-linux.so.2. The only input is librtld.os, which is created a few lines early in the make process by the command:
+
+gcc -nostdlib -nostartfiles -r \
+    -o /home/dww4s/packages/glibc-build/elf/librtld.os \
+    '-Wl,-(' \
+        /home/dww4s/packages/glibc-build/elf/dl-allobjs.os \
+        /home/dww4s/packages/glibc-build/elf/rtld-libc.a \
+        -lgcc \
+    '-Wl,-)'
+So, the files included as part of the librtld.os object are the things included in dl-allobjs.os, rtld-libc.a, as well as libgcc.so. Note the arguments -( and -) which are sent to the linker with the -Wl, prefix. Those arguments tell the linker to iterate over the archives until a steady state is reached. dl-allobjs.os and rtld-libc.a contain the object files for the shared library, along with the entry point _start. _start is defined in rtld.c, from a macro (RTLD_START) included in the header file dl-machine.h. The macro expands into inlined assembly which define the _start symbol, and calls the function _dl_start. Since ld-linux.so.2 has a _start symbol, it is able to to be run directly.
+
+Creating a similar relocatable file
+To make your own partially linked file, run something like the following:
+
+gcc -nostdlib -nostartfiles -r -o strata.o \
+    `find ../../src -iname '*.o'` /usr/lib/libc.a
+more up to date (glibc 2.7)
+
+gcc   -nostdlib -nostartfiles -shared \
+      -Wl,-z,combreloc -Wl,-z,relro -Wl,--hash-style=both -Wl,-z,defs
+      -Wl,--verbose 2>&1 |  \
+        LC_ALL=C \
+          sed -e '/^=========/,/^=========/!d;/^=========/d'    \
+              -e 's/\. = 0 + SIZEOF_HEADERS;/& _begin = . - SIZEOF_HEADERS;/' \
+          > /bigtemp/dww4s/glibc/glibc-build/elf/ld.so.lds
+gcc   -nostdlib -nostartfiles -shared \
+      -o /bigtemp/dww4s/glibc/glibc-build/elf/ld.so \
+      -Wl,-z,combreloc -Wl,-z,relro -Wl,--hash-style=both -Wl,-z,defs \
+      /bigtemp/dww4s/glibc/glibc-build/elf/librtld.os \
+      -Wl,--version-script=/bigtemp/dww4s/glibc/glibc-build/ld.map \
+      -Wl,-soname=ld-linux.so.2 -T /bigtemp/dww4s/glibc/glibc-build/elf/ld.so.lds
+Author:	Dan Williams (dan_williams@cs.virginia.edu)
+Last update:	05/01/09
