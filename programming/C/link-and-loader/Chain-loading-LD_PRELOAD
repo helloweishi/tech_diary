@@ -1,0 +1,362 @@
+title: LD_PRELOAD
+link: https://www.cs.kent.ac.uk/people/staff/srk21/blog/2021/01/04/#elf-chain-loading
+tag: linker, loader
+status: none
+post:
+Chain loading, not preloading: the dynamic linker as a virtualization vector
+Suppose you want to run a pre-existing binary program but in some kind of instrumented or modified form. On ELF-based systems, people often do this with LD_PRELOAD: you preload a library that interferes with some C library calls or somehow tweaks the process state at startup (say to install a signal handler). The program itself is (hopefully) oblivious to what you've done, but its behaviour is modified accordingly. Some years back I saw a nice survey of applications in a presentation by Kevin Pulo; there may be other resources out there.
+
+This post is about some alternative ELF-level trickery, that is sometimes a better option for doing this. Here it's shown on GNU/Linux, but any ELF platform should allow it.
+
+If you've tried LD_PRELOAD, you'll know that there are lots of problems and gotchas with it. Your code has to deal with being initialized at an unpredictable time; the C library's binary interface evolves from version to version, so is prone to additions that sidestep your preloads; it doesn't work for programs that do direct system calls (not via the libc) or are statically linked. What I'm about to describe avoids many of these problems, by creating what I'll call an ELF chain loader. This loader must do any program instrumentation at the instruction level, rather than the linkage level as with LD_PRELOAD. So in a sense, chain loading is less powerful than preloading: it's working at a lower level, and all your tweaks must be somehow “installed” at startup, rather than as part of the “dialogue” of library calls. However, there's a pattern we can use to overcome that limitation, so in fact I'd argue the result is more powerful than LD_PRELOAD, although (for now) harder to use.
+
+Suppose you have a command invocation
+
+$ ./myprog
+and want your tweaked command to be invocable something like
+
+$ LD_PRELOAD=mymods.so ./myprog
+or (nicer)
+
+$ ./mymods ./myprog
+In the latter, mymods is a chain loader binary. A chain loader is basically a stub dynamic linker. It doesn't actually do dynamic linking; it's invoked like a dynamic linker, but it just loads another dynamic linker—after doing whatever tweaks and fiddles you'd like it to do.
+
+Dan Williams has written (on a page now sadly disappeared, but WayBack-available) about how to build your own dynamic linker or ld.so. Building a binary of the right form is the easy part. Building one that actually links and runs real programs is a big job, especially if you're using a complex C library (like glibc) or complex run-time features (like thread-local storage). But in outline, a dynamic linker basically looks like this.
+
+do bootstrap relocation
+initialize some stuff (link map, TLS, ...)
+load and map libraries, transitively, resolving symbols, applying relocations, etc.
+call constructors
+jump to the main program's entry point
+The chain loader that we'll build is basically just a stub, which will call onward to the real ld.so to handle most of the above stuff. So it is much simpler:
+
+do bootstrap relocation
+mess with the process however we like
+load and map the next loader (e.g. the real dynamic linker)
+(optional) disguise the fact that we ever existed
+jump to the next loader's entry point
+If we do it right, the next loader won't even know that the stub loader has run. We can think of a chain loader as a “virtualization vector”. It sets up a (somehow-) virtualized environment, in which the entire original process, from dynamic linking onwards, then proceeds to execute.
+
+(The “disguise” part is interesting. It makes us almost indistinguishable from malware! Virtualization is about transparently subverting a pre-existing process's execution, and there's a large class of malware that also does this.)
+
+A few years ago I wrote a skeleton of a dynamic linker, called donald. It can load only very simple statically linked programs—hardly a real dynamic linker! Nevertheless it's a good vehicle for understanding what goes on during process start-up, and is a basis for building our chain loader. Caveat: it's very quick-and-dirty; it doesn't always use robust coding patterns, and it uses some unportable hacks to keep the code simple. That makes it possible to show almost all of it in a single blog post! Following Dan Williams's recipe, the command we use to link donald is the following.
+
+$ cc -std=gnu99 -g -fPIC -fno-stack-protector \
+  -fuse-ld=bfd -Wl,-Bsymbolic -nostdlib -nostartfiles -shared \
+  -o "donald.so" premain.o main.o entry.o load.o \
+  -Wl,-Bstatic /path/to/musl/lib/libc.a -Wl,-Bsymbolic \
+  -T donald.lds -Wl,-soname=ld-linux.so.2 
+where we're using a nice simple C library implementation, namely musl, to provide the libc calls that we use internally. The donald.lds file is a lightly tweaked linker script that adds a symbol that'll help us do bootstrap relocation, as per Dan Williams's article. The work of donald is done in the C files premain.c, main.c, entry.c and load.c.
+
+“Bootstrap relocation” refers to the solution to an essential problem: who links the dynamic linker? In old-fashioned static linking scenarios, binaries contain a ready-to-go memory image. The program is loaded at address 0, all address bindings are known, and references have been fixed up when the binary was linked. By contrast, in dynamic linking scenarios, a library might be loaded at any address, meaning it still contains some relocation records describing fixups needed at load time. These are done by the dynamic linker. But what if you are the dynamic linker? The dynamic linker itself is just ld.so, a shared library; it, too, can be loaded anywhere. So who relocates the relocator? The answer: it relocates itself. The entry path of the dynamic linker consists of code specially crafted to run correctly regardless of where it is loaded. One of its first tasks is to locate the table of its own relocation records, relocate itself using them, and then continue execution in a “normal” environment.
+
+On the x86-64 architecture, this is pretty straightforward because most data and code references are PC-relative. (On other architectures it's often much hairier, because it's harder to avoid using any absolute address references before you've completed bootstrap relocation.) Usually the entry path is written in per-arch assembly, precisely to accommodate the less straightforward architectures. In donald, which works only on x86-64, we have the option to write it directly “in C”. It's not really C, because we're bound by a very wacky contract: don't write any code that will cause the compiler to use non-relative addressing modes! The entry point of donald, called directly by the kernel, looks like the following.
+
+/* The function prologue pushes rbp on entry, decrementing the stack
+ * pointer by 8. Then it saves rsp into rbp. So by the time we see rbp, 
+ * it holds the entry stack pointer *minus 8 bytes*. */
+#define BP_TO_SP_FIXUP 0x8
+void *rsp_on_entry HIDDEN;
+/* This isn't the usual "main"; it's the raw entry point of the application.
+ * We link with -nostartfiles. We then define our own main. */
+int _start(void)
+{
+    /* gcc doesn't let us disable prologue/epilogue, so we have to fudge it.
+     * We assume rsp is saved into rbp in the prologue. */
+    register unsigned char *bp_after_main_prologue;
+    __asm__ ("movq %%rbp, %0\n" : "=r"(bp_after_main_prologue));
+
+    int argc;
+    char **argv;
+    rsp_on_entry = bp_after_main_prologue + BP_TO_SP_FIXUP;
+    preinit(rsp_on_entry, &argc, &argv); // get us a sane environment
+
+    printf("Hello from " DONALD_NAME "!\n");
+
+    int ret = main(argc, argv);
+
+    /* We're executing without startfile code, so returning 0 would not make sense. 
+     * Calling exit() brings a dependency on fini_array stuff that we need to avoid
+     * since it depends on the startup files. So just do the syscall directly. */
+    syscall(SYS_exit, ret);
+
+    __builtin_unreachable();
+}
+When the kernel jumps to the above code, the stack pointer is pointing at a bunch of useful information: the program arguments and so forth. But the C compiler will generate a prologue that moves it away from that. So the first thing we do is use a hard-coded hack to “undo” that, and get the “stack pointer on entry”, which we pass to our preinit function.
+
+Using this pointer, preinit can navigate the initial stack to find all that data of interest. The data starts with argc; above that is argv (the vector of pointers to argument strings), above that envp (the same but for environment variables), then the auxiliary vector of records containing “stuff the kernel wanted to tell us” and finally the strings these argv and envp vectors point to. You can read more about auxiliary vectors here. Our preinit parses this chunk of memory, and extracts a couple of facts that we'll need to do our work: the page size and our own base address.
+
+Bootstrap relocation uses the latter of these. We find our own dynamic linking information (symbol table and relocation table) using the _DYNAMIC symbol. But remember “this isn't C”: simply referring to _DYNAMIC may not work yet, because it's defined outside the current compilation unit (by the linker, in fact) so the compiler may emit a reference that needs relocation. By definition, the relocation hasn't been applied yet. In donald I used an unorthodox (and unportable) hack: taking the address of _DYNAMIC in our C code before we relocate ourselves gets us the unrelocated (file-relative) address, to which we manually add our own base address as snarfed from the auxiliary vector. (Better code would probably declare _DYNAMIC as file-local, using the ELF “hidden” or “internal” visibility, which would allow the linker to fix this up into rip-relative addressing.) Either way, we can get to the _DYNAMIC vector, which gets us to our symbol and relocation tables; then we walk the relocation table and apply each reloc.
+
+static inline void __attribute__((always_inline)) bootstrap_relocate(unsigned char *at_base)
+{
+    /* We scan _DYNAMIC to get our own symbol table.
+     * HACK: we manually relocate &_DYNAMIC
+     * by our load address to get its actual address. */
+    ElfW(Dyn) *p_dyn = (void*)(at_base + (uintptr_t) &_DYNAMIC);
+    ElfW(Sym) *dynsym_start = NULL;
+    unsigned long dynsym_nsyms = 0;
+    ElfW(Rela) *rela_dyn_start = NULL;
+    ElfW(Rela) *rela_plt_start = NULL;
+    unsigned long rela_dyn_sz = 0;
+    unsigned long rela_dyn_entsz = 0;
+    unsigned long rela_dyn_nents = 0;
+    unsigned long rela_plt_sz = 0;
+    while (p_dyn->d_tag != DT_NULL)
+    {
+        if (p_dyn->d_tag == DT_SYMTAB) dynsym_start = (void*)(at_base + p_dyn->d_un.d_ptr);
+        else if (p_dyn->d_tag == DT_SYMENT) dynsym_nsyms = p_dyn->d_un.d_val;
+        else if (p_dyn->d_tag == DT_RELA) rela_dyn_start = (void *)(at_base + p_dyn->d_un.d_ptr);
+        else if (p_dyn->d_tag == DT_RELASZ) rela_dyn_sz = p_dyn->d_un.d_val;
+        else if (p_dyn->d_tag == DT_RELAENT) rela_dyn_entsz = p_dyn->d_un.d_val;
+        else if (p_dyn->d_tag == DT_JMPREL) rela_plt_start = (void *)(at_base + p_dyn->d_un.d_ptr);
+        else if (p_dyn->d_tag == DT_PLTRELSZ) rela_plt_sz = p_dyn->d_un.d_val;
+        ++p_dyn;
+    }
+    if (rela_dyn_entsz > 0) rela_dyn_nents = rela_dyn_sz / rela_dyn_entsz;
+    /* We loop over the relocs table and relocate what needs relocating. */
+    ElfW(Rela) *p_rela = rela_dyn_start;
+    for (int i = 0; i < rela_dyn_nents; ++i)
+    {
+        do_one_rela(rela_dyn_start + i, at_base, dynsym_start);
+    }
+    p_rela = rela_plt_start;
+    /* Also do .rela.plt */
+    for (int i = 0; i < (rela_plt_sz / sizeof (Elf64_Rela)); ++i)
+    {
+        do_one_rela(rela_plt_start + i, at_base, dynsym_start);
+    }
+I haven't shown the function that applies a single relocation record, do_one_rela, but it's pretty simple. In practice it only needs to know a few flavours of relocation.
+
+static inline void __attribute__((always_inline)) 
+do_one_rela(ElfW(Rela) *p_rela, unsigned char *at_base, ElfW(Sym) *p_dynsym)
+{
+#define SYMADDR(r_info) (p_dynsym[ELF64_R_SYM((r_info))].st_value)
+    Elf64_Addr *reloc_addr = (Elf64_Addr *)(at_base + p_rela->r_offset);
+    switch (ELF64_R_TYPE(p_rela->r_info))
+    {
+        case R_X86_64_RELATIVE: // no symbol addr, because we're RELATIVE
+            *reloc_addr = (Elf64_Addr)(at_base + p_rela->r_addend); 
+            break;
+        case R_X86_64_64: 
+            *reloc_addr = (Elf64_Addr)(at_base + SYMADDR(p_rela->r_info) + p_rela->r_addend);
+            break;
+        case R_X86_64_JUMP_SLOT:
+        case R_X86_64_GLOB_DAT:
+            *reloc_addr = (Elf64_Addr)(at_base + SYMADDR(p_rela->r_info));
+            break;
+        default: 
+            /* We can't report an error in any useful way here. */
+            break;
+    }
+#undef SYMADDR
+}
+We're now finished with donald, and with the basics of being a dynamic linker. We're ready to take on the main task of being a chain loader. Ideally we want to be invocable in two ways: as a bona fide dynamic linker requested directly by an executable, as we see here:
+
+$ readelf -Wl /bin/blah
+
+Elf file type is EXEC (Executable file)
+Entry point 0x401432
+There are 9 program headers, starting at offset 64
+
+Program Headers:
+  Type           Offset   VirtAddr           PhysAddr           FileSiz  MemSiz   Flg Align
+  PHDR           0x000040 0x0000000000400040 0x0000000000400040 0x0001f8 0x0001f8 R E 0x8
+  INTERP         0x000238 0x0000000000400238 0x0000000000400238 0x00001c 0x00001c R   0x1
+      [Requesting program interpreter: /path/to/my/ld.so]
+  ...
+and as a command-line tool
+
+$ /path/to/my/ld.so /bin/blah
+These two cases work out slightly differently at run time. The first is the “normal” case, and the kernel has already mapped both the program itself and us the dynamic linker. In the latter, the kernel thinks it's loading us as a statically linked binary (curiously not caring that we're ET_DYN not ET_EXEC), and it's up to us to parse our arguments, identify the program we want to run, and load it. The contents of the auxiliary vector are slightly different in the two cases, and indeed that's how we'll tell the difference and behave accordingly.
+
+int main(int argc, char **argv)
+{
+    // were we invoked by name, or as a .interp?
+    // use AT_ENTRY to find out: it's _start if we were invoked as a program,
+    // otherwise it's the program's _start
+    int argv_program_ind;
+    uintptr_t entry = (uintptr_t) &_start;
+    _Bool we_are_the_program = 1;
+    for (ElfW(auxv_t) *p = p_auxv; p->a_type; ++p)
+    {
+        switch (p->a_type)
+        {
+            case AT_ENTRY:
+                if (p->a_un.a_val != (uintptr_t) &_start) we_are_the_program = 0;
+                entry = p->a_un.a_val;
+                break;
+            default:
+                break;
+        }
+    }
+    fprintf(stderr, "We think we are%sthe program\n", we_are_the_program ? " " : " not ");
+Since we're a chain loader, most of what we want to do is load the next loader and jump to it. To load the next loader, we'll need to memory-map some chunks of the file, by reading its ELF header and program headers. We can simply do this by file I/O.
+
+    /* We always chain-load the ld.so and let it load the program. Let's read it. */
+    const char ldso_path[] = "/lib64/ld-linux-x86-64.so.2"; // HACK: sysdep
+    int ldso_fd = open(ldso_path, O_RDONLY);
+    if (ldso_fd == -1) { die("could not open %s\n", ldso_path); }
+    struct stat ldso_stat;
+    int ret = fstat(ldso_fd, &ldso_stat);
+    if (ret != 0) { die("could not stat %s\n", ldso_path); }
+
+    // read the ELF header
+    ssize_t nread;
+    ElfW(Ehdr) ehdr; nread = read(ldso_fd, &ehdr, sizeof (ElfW(Ehdr)));
+    if (nread != sizeof (ElfW(Ehdr))) die("could not read ELF header of %s\n", ldso_path);
+    // check it's a file we can grok
+    if (ehdr.e_ident[EI_MAG0] != 0x7f
+        || ehdr.e_ident[EI_MAG1] != 'E'
+        || ehdr.e_ident[EI_MAG2] != 'L'
+        || ehdr.e_ident[EI_MAG3] != 'F'
+        || ehdr.e_ident[EI_CLASS] != ELFCLASS64
+        || ehdr.e_ident[EI_DATA] != ELFDATA2LSB
+        || ehdr.e_ident[EI_VERSION] != EV_CURRENT
+        || (ehdr.e_ident[EI_OSABI] != ELFOSABI_SYSV && ehdr.e_ident[EI_OSABI] != ELFOSABI_GNU)
+        // || phdr->e_ident[EI_ABIVERSION] != /* what? */
+        || ehdr.e_type != ET_DYN
+        || ehdr.e_machine != EM_X86_64
+        )
+    {
+        die("unsupported file: %s\n", ldso_path);
+    }
+    off_t newloc = lseek(ldso_fd, ehdr.e_phoff, SEEK_SET);
+
+    // process the PT_LOADs
+    ElfW(Phdr) phdrs[ehdr.e_phnum];
+    for (unsigned i = 0; i < ehdr.e_phnum; ++i)
+    {
+        off_t off = ehdr.e_phoff + i * ehdr.e_phentsize;
+        newloc = lseek(ldso_fd, off, SEEK_SET);
+        if (newloc != off) die("could not seek to program header %d in %s\n", i, ldso_path);
+        size_t ntoread = MIN(sizeof phdrs[0], ehdr.e_phentsize);
+        nread = read(ldso_fd, &phdrs[i], ntoread);
+        if (nread != ntoread) die("could not read program header %d in %s\n", i, ldso_path);
+    }
+Now we've collected the PT_LOAD program headers, which tell us which parts of the file to map into memory. To rule out partial failures, we reserve enough memory to be sure we can map the loader in a big contiguous chunk, even though that might be split over many PT_LOADs.
+
+    ElfW(Addr) max_vaddr = 0;
+    for (unsigned i = 0; i < ehdr.e_phnum; ++i)
+    {
+        ElfW(Addr) max_vaddr_this_obj = phdrs[i].p_vaddr + phdrs[i].p_memsz;
+        if (max_vaddr_this_obj > max_vaddr) max_vaddr = max_vaddr_this_obj;
+    }
+    uintptr_t base_addr_hint = 0x555555556000;
+    void *base = mmap((void*) base_addr_hint, max_vaddr, PROT_NONE, MAP_PRIVATE,
+        ldso_fd, 0);
+    if (base == MAP_FAILED) die("could not map %s with PROT_NONE\n", ldso_path);
+    uintptr_t base_addr = (uintptr_t) base;
+Once we've done that, we have reserved space at some load address which could be arbitrary (but we'll use a hint of 0x555555556000)... all we need to do is turn each PT_LOAD header into the (usually) one corresponding mmap() invocation.
+
+    uintptr_t phdrs_addr = 0;
+    for (unsigned i = 0; i < ehdr.e_phnum; ++i)
+    {
+        if (phdrs[i].p_type == PT_LOAD)
+        {
+            _Bool read = (phdrs[i].p_flags & PF_R);
+            _Bool write = (phdrs[i].p_flags & PF_W);
+            _Bool exec = (phdrs[i].p_flags & PF_X);
+
+            if (phdrs[i].p_offset < ehdr.e_phoff
+                    && phdrs[i].p_filesz >= ehdr.e_phoff + (ehdr.e_phnum + ehdr.e_phentsize))
+            {
+                phdrs_addr = base_addr + phdrs[i].p_vaddr + (ehdr.e_phoff - phdrs[i].p_offset);
+            }
+            ret = load_one_phdr(base_addr, ldso_fd, phdrs[i].p_vaddr,
+                phdrs[i].p_offset, phdrs[i].p_memsz, phdrs[i].p_filesz, read, write, exec);
+            switch (ret)
+            {
+                case 2: die("file %s has bad PT_LOAD filesz/memsz (phdr index %d)\n", 
+                        ldso_path, i);
+                case 1: die("could not create mapping for PT_LOAD phdr index %d\n", i);
+                case 0: break;
+                default:
+                    die("BUG: mysterious error in load_one_phdr() for PT_LOAD phdr index %d\n", i);
+                    break;
+            }
+        }
+    }
+Now we've mapped the program we want to run, i.e. the next loader. In a real dynamic linker, our work would only just be beginning: we've mapped the next program, but still have to walk its depended-on libraries and load those (transitively), apply relocations in all the above, and so on. But in our case, all we have to do is do whatever tinkering suits our use case, then transfer control to the next loader, using the entry point in its ELF headers. To cover our tracks, we also return the stack pointer to where it was when we started (since the next loader will want to locate the auxiliary vector just as we did).
+
+void __attribute__((noreturn)) enter(void *entry_point)
+{
+    fprintf(stderr, DONALD_NAME ": jumping to system ld.so entry point %p with rsp %p\n",
+        (void*) entry_point, rsp_on_entry);
+    fflush(stderr);
+    __asm__ volatile ("movq %0, %%rsp\n"
+          "xorq %%rbp, %%rbp\n" /* clear rbp to avoid confusing stack walkers */
+          "jmpq *%1\n" : : "m"(rsp_on_entry), "r"(entry_point));
+    __builtin_unreachable();
+}
+In fact, we could have covered our tracks a bit better. If we're being invoked as a command, not as a requested dynamic linker, then we want to make the auxiliary vector look as if the next loader is the one that was invoked as a command too. So we do a pass over the vector to fix it up.
+
+for (ElfW(auxv_t) *p = p_auxv; p->a_type; ++p)
+    {
+        switch (p->a_type)
+        {
+            case AT_ENTRY:
+                if (we_are_the_program) p->a_un.a_val = entry_point;
+                break;
+            case AT_PHDR:
+                if (we_are_the_program) p->a_un.a_val = phdrs_addr;
+                break;
+            case AT_PHENT:
+                if (we_are_the_program) p->a_un.a_val = ehdr.e_phentsize;
+                break;
+            case AT_PHNUM:
+                if (we_are_the_program) p->a_un.a_val = ehdr.e_phnum;
+                break;
+            case AT_BASE:
+                if (!we_are_the_program) p->a_un.a_val = base_addr;
+                break;
+            case AT_EXECFN:
+                if (we_are_the_program) p->a_un.a_val = (uintptr_t) &argv[0];
+                break;
+        }
+    }
+Note that in the “requested” case, since the AT_BASE vector entry is set to the loader's load address, it needs to be fixed up to that of the next loader. If we're invoked as a command, it'll be absent or 0 and can stay that way. The other cases are ones that only need fixing up if we're run as a command, as the vector needs to reflect the next loader's structure not our own (and not the program's, which it only reflects if we're run as a requested loader).
+
+There's more bit of track-covering we can do, and in fact need to, if we're “requested” rather than invoked. One interesting quirk of what we have so far is that the next loader, although its name is /lib64/ld-linux-x86_64.so.2, will think it's called /path/to/my/ld.so, and will create a link map entry accordingly. This will confuse debuggers, e.g. because they will look at the wrong file's symbols. It took me a while to figure out where the dynamic linker gets its own name, but it's obvious in hindsight: from the .interp string in the mapped program binary! (If we were invoked, it more obviously comes from argv.) So to avoid confusion, we want to overwrite the .interp string before we call the next loader. That takes some jiggery-pokery at link time, but we're already doing some of that to be an alternative requested linker—i.e. to link with --dynamic-linker=/path/to/my/ld.so. Linking in a small additional file assembled from
+
+#if defined(__linux__) && defined(__ELF__)
+.section .note.GNU-stack,"",%progbits
+#endif
+.section .interp, "aw"
+is enough to make the .interp writable, and can also be used to add more padding if the stock path (which we'll be writing) might be longer than our requested path.
+
+There's another wrinkle with this. Since the default linker script will place .interp among stuff that is otherwise read-only, this extra linked file will also have the side-effect of making writable the program headers, various notes and other stuff appearing in the segment. I'm not yet decided on the best way to deal with this. We could mprotect() this segment after we're finished with it, if we're sure we're the only reason why it should be writable. We could skip the above and simply use a pair of mprotect() calls to do the write, at least if we don't need to add padding. We could try to move .interp into the RELRO (read-only after relocation) part of the executable. Or perhaps we could arrange that our ld.so has two .interp-like chunks, one for its own name and one for the delegated ld.so make them page-aligned, and do a remap rather than a write. This would waste some disk space in the binary, but avoid wasting memory in systems where many processes are loaded this way—a common trade-off in dynamic linking.
+
+We could go further with track-covering, such as attempting to unmap ourselves as we hand over to the next loader. That would involve more sneaky malware-like tricks, and is overkill for most purposes.
+
+So why is all this better than LD_PRELOAD? I can think of several reasons.
+
+It works with static binaries. LD_PRELOAD works with dynamically linked executables only. Chain loading also works with those, by loading the dynamic linker and letting it do the work. But instead of loading the dynamic linker, it could easily directly load any binary that does not require load-time relocation or transitive loading of dependencies—including a plain old statically linked binary. We'd need to tweak the code shown slightly, but not much.
+Initialization is more predictable. We're run right at the start of the process, and at no other point. With preloading, by contrast, we might run either when our constructor is run, or perhaps sooner if one of our preloaded functions is called by another piece of code, including inside the dynamic linker (a common problem if you preload malloc()).
+Greater robustness is possible. Being forced to work at the binary, whole-process level can make things more difficult (as I'll note in a second). But if we pay that cost, we won't be prone to coverage gaps of LD_PRELOAD. For example, if we trap system calls directly, we will catch cases like direct system calls or libc-internal calls (e.g. libc calling itself through a private symbol) which the LD_PRELOAD approach misses. We'll also benefit from how the system call interface is narrower than the libc ABI (e.g. consider how the family of execXX() library calls typically turns into just one execve() system call) and exhibits less churn.
+Compositionality: with preloading, the LD_PRELOAD environment variable is a contended shared resource. For example, despite what I wrote at the top, you shouldn't really do
+$ LD_PRELOAD=mymods.so ./myprog
+but rather something like
+$ LD_PRELOAD="${LD_PRELOAD:+${LD_PRELOAD} }mymods.so" ./myprog
+to avoid clobbering an existing preload. Child processes requiring their own preload might be similarly cavalier in clobbering the LD_PRELOAD string. Working around this means preloading execve() and friends, to do much string-splicing and whitespace-munging. You also have to worry about ordering the preloads (which one goes first?) and interactions between them (do we preload any of the same symbols?). With chain loading, although analogous problems exist, overall there's a bit less splicing and munging, as re-inserting the loader can be done at the level of argument vectors (“prepend this arg on any execve()). This also means that if you want multiple loaders, the order is completely clear—but harder to change, and of course there may still be interactions between instrumentations.
+Why's it not so good?
+
+It suits binary instrumentation but not link-time instrumentation. The case I mentioned earlier, of preloading malloc(), isn't directly possible with a chain loader, because when it runs, malloc() doesn't even exist yet. However, you can still do what I call “bootstrapping binary instrumentation” which works very nicely. In short, we arrange to intercept all system calls that create executable memory. We do this at first by binary-instrumenting the next loader in the chain, so that it generates traps when it wants to do mmap(), mremap(), mprotect() or other system calls that might make executable memory. The trap handlers, in turn, rewrite the mapped instructions before actually making them executable. At a minimum, these rewrites must also perform the analogous instrumentation for any system calls those instructions contain. If you do this for the entire family of memory-mapping syscalls, and foil any attempt to create simultaneously writable and executable access to memory (including catching cases like distinct simultaneous mappings of the same file/object!), you have an iron grip of the code that can run within the process. I'll talk more about this in a future post. Once it's in place, then of course you can layer on higher-level instrumentations, e.g. to catch malloc() you could use something like DynInst to put a trampoline in its entry path, at the point when the real ld.so is mapping the libc's text segment.
+Whole-system binary instrumentation is harder to make memory-efficient. All this clobbering of raw instructions is bad for shared libraries, which achieve sharing by avoiding any need to write to pages of text that are (morally) copy-on-write. To make a whole-system instrumentation that doesn't undo this sharing and consequently chew lots of extra memory, we need something else—maybe a kind of persistent code cache that can share the instrumented versions, or maybe we can rely on opportunistic OS-level page merging like KSM.
+It works even less well with setuid/setgid cases. (But....) LD_PRELOAD does still vaguely work with setuid/setgid binaries—specifically, if the preloaded library is itself a “trusted” file, meaning it's located in the default search directories and the preload string is just the file name, not the pathname. In such cases, the setuid stays in effect and the preloaded code also gets the elevated privileges. (In practice this is not always a good thing, as writing a secure preloadable library is incredibly hard... ditto a secure dynamic linker! There was a nice article by Tim Brown a few years ago about this.) In our case, while we get the same effect if our loader is “requested”, we don't if it's “invoked” as the program itself. In such cases, the the kernel simply doesn't see any setuid going on, so won't change the effective UID.
+The “but...” refers to a possible “big-hammer” way around the setuid problem: make our loader setuid root, albeit dropping root privileges super-early. That sounds crazy, but I believe it'd be an interesting demo for software verification. It only needs to be root just long enough to open the target binary and test for which UID to switch down to (either the invoking user or the file owner). The test could be done in a very short code path making probably just two system calls: one to open a file descriptor on the loaded file, and another to fstat() it. On many architectures it could be done before bootstrap relocation. Can we prove that code correct? Doing so is feasible if we have trustworthy formal specifications of instruction sets, system calls and (if needed) relocation. Not coincidentally, I've been involved in some research on these; there is more to do.
+
+In a future post I'll demo a very simple syscall tracer built using this combination of chain-loading and bootstrapping instrumentation. It's basically an in-process strace. System call instrumentation is usually what people want when they use LD_PRELOAD, and are forced to settle for libc instrumentation instead.
+
+Code is available (though definitely not out-of-the-box demoable; maybe by the next post) in my donald repository, and a bit more (mostly to be explained next time) in my liballocs (see allocsld) and libsystrap.
+
+
+reference:
+lca2009_ld_preload: http://kev.pulo.com.au/publications/#lca2009_ld_preload
+donald: https://github.com/stephenrkell/donald/
+musl: https://www.musl-libc.org/
+ELF Auxiliary Vectors: http://articles.manugarg.com/aboutelfauxiliaryvectors.html
+ksm: https://www.kernel.org/doc/html/latest/admin-guide/mm/ksm.html
+BTL: http://www.nth-dimension.org.uk/pub/BTL.pdf
+liballocs: https://github.com/stephenrkell/liballocs
+libsystrap: https://github.com/stephenrkell/libsystrap
