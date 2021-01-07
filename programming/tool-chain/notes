@@ -1,0 +1,11 @@
+title: build tool chain
+link: https://lwn.net/SubscriberLink/841797/6742a0742f6160ef/
+tag: no backdoor, build
+status: none:
+summary: 
+Reproducible Builds: https://reproducible-builds.org/
+Bootstrappable Builds: https://bootstrappable.org/
+                       https://www.freelists.org/list/bootstrappable
+Scheme: http://www.scheme-reports.org/
+hex-code-to-binary translator: https://github.com/oriansj/stage0
+events: https://reproducible-builds.org/events/
