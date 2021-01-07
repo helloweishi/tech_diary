@@ -1,0 +1,12 @@
+title: SBC PCIE
+link: none
+tag: PCIE, SBC
+status: none
+summary:
+options:
+ROCKPro64 SBC with PCIe x4 --PINE64 : https://www.youtube.com/watch?v=CeoNHGFN_30 ; http://rockpi.org/
+Nvidia Jetson Nano: 
+Hackerboards:
+NanoPi_M4: two lanes of PCIe coming to the daughterboards via old-school 0.1" connector
+MS-98H7: https://ipc.msi.com/product_detail/MS-98H7
+site: https://globalamericaninc.com/
