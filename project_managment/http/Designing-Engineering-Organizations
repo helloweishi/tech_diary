@@ -1,0 +1,34 @@
+title: Designing Engineering Organizations
+link: https://jacobian.org/2021/jan/5/designing-engineering-organizations/
+tag: engineering, org structure
+status: done
+summary: 
+Conway’s Law : https://en.wikipedia.org/wiki/Conway%27s_law
+
+Product-aligned vs technology-aligned
+product-aligned: each team is responsible for some piece of your public-facing product
+Technology-aligned: organizations break down based more on backend technology
+
+Generally, product-aligned teams deliver better products more rapidly, if delivering a new feature requires several teams to coordinate, you’ll struggle
+
+Stable vs project-based teams
+stable teams: Teams are long-lived, and projects come to teams
+Project-based teams: form to tackle a specific project, and dissolve when it ends
+
+Generally, stable teams produce better results.
+
+Single- vs interdisciplinary
+Single-disciplinary teams group staff by skill-set 
+Interdisciplinary teams combine all the pieces a team needs to execute under one roof
+
+Generally, interdisciplinary teams outperform organizations built with single-discipline teams, but challenges around reporting chains
+and performance review.
+
+Reporting chains: delivery-aligned or skills-aligned
+skills-aligned reporting chains: people report to managers who match their skill-set.
+delivery-aligned reporting chains: staff reports to the manager of their delivery team
+
+Generally, delivery-aligned is more effective, Skills-aligned teams can struggle with actually shipping.
+organizations with delivery-aligned teams need to create other channels for domain-specific guidance and feedback.
+
+optimize for delivery, then stable, multi-disciplinary, and product-aligned should the principles that guide how you form teams.
