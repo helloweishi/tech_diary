@@ -2,3 +2,5 @@ title: compression algorithm
 link: https://go-compression.github.io/algorithms/overview/
 tag: compression
 status: none
+summary: 
+https://www.dangermouse.net/esoteric/lenpeg.html :compression algorithm for PIC
