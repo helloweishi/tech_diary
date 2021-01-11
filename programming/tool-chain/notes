@@ -9,3 +9,4 @@ Bootstrappable Builds: https://bootstrappable.org/
 Scheme: http://www.scheme-reports.org/
 hex-code-to-binary translator: https://github.com/oriansj/stage0
 events: https://reproducible-builds.org/events/
+Reproducible builds and deployments OS: https://nixos.org/
