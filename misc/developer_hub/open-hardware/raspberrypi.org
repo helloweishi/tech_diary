@@ -2,3 +2,5 @@ title: raspberrypi.org
 link: https://www.raspberrypi.org/blog/new-product-raspberry-pi-high-quality-camera-on-sale-now-at-50/
 tag: raspberry Pi, EBC
 status: none
+summary:
+Dexter, A Voice Controlled Assistant : https://github.com/iamsrp/dexter
