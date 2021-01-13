@@ -3,3 +3,5 @@ link: https://www.projectlenix.org
       https://github.com/rocky-linux/rocky --centos altnative
 tag: centos-altnative, no reinstallation, no reboots
 status: none
+summary:
+RHEL fork open source and team at CloudLinux: https://almalinux.org/
