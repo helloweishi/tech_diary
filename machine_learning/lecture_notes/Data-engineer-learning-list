@@ -1,0 +1,42 @@
+title: data engineer learning list
+link: https://khashtamov.com/en/how-to-become-a-data-engineer/
+tag: data engineering
+status: done
+summary: 
+
+Disk IO posts:
+https://medium.com/databasss/on-disk-io-part-1-flavours-of-io-8e1ace1de017
+https://medium.com/databasss/on-disk-io-part-2-more-flavours-of-io-c945db3edb13
+https://medium.com/databasss/on-disk-io-part-3-lsm-trees-8b2da218496f
+https://medium.com/databasss/on-disk-storage-part-4-b-trees-30791060741
+https://medium.com/databasss/on-disk-io-access-patterns-in-lsm-trees-2ba8dffc05f9
+
+lecture of Database:
+https://www.youtube.com/watch?v=oeYBdghaIjc&list=PLSE8ODhjZXjbohkNBWQs_otTrBTrjyohi : Introduction to Database Systems (Fall 2019)
+https://www.youtube.com/watch?v=SdW5RKUboKc&list=PLSE8ODhjZXjasmrEd2_Yi1deeE360zv5O : Advanced Database Systems (Spring 2020)
+
+SQL:
+https://mode.com/sql-tutorial/introduction-to-sql/
+
+Programming: Python, Java and Scala
+The Big Data Tools: 
+Apache Kafka is the leading message queue/event bus/event streaming
+Apache Spark is the unified analytics engine for large-scale data processing
+Apache Hadoop, the big data framework which consists of different tools, libraries and frameworks including distributed file system (HDFS), Apache Hive, HBase etc.
+Apache Druid is a real-time analytics database
+
+Cloud Platforms
+https://aws.amazon.com/ru/certification/certified-data-analytics-specialty/
+https://cloud.google.com/certification/data-engineer
+
+Fundamentals of Distributed Systems:
+https://www.youtube.com/playlist?list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB : lectures from MIT by Robert Morris
+https://www.youtube.com/playlist?list=PLeKd45zvjcDFUEv_ohr_HdUFe97RItdiB : lectures by Martin Kleppmann
+https://www.youtube.com/playlist?list=PLNPUF5QyWU8O0Wd8QDh9KaM1ggsxspJ31 : by Lindsey Kuper
+
+Data Pipelines
+https://khashtamov.com/en/introduction-to-apache-airflow/
+https://github.com/spotify/luigi
+https://www.prefect.io/
+https://dagster.io/
+https://nifi.apache.org/
