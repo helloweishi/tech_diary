@@ -1,0 +1,6 @@
+title: macOS in a VM
+link: https://github.com/popey/sosumi-snap
+tag: macOS, VM
+status: none
+summary: 
+sudo snap install sosumi
