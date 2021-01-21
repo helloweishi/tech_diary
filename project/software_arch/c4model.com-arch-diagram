@@ -6,3 +6,9 @@ summary:
 arch tools: C4-PlantUML, Structurizr
 abstraction first, notation second.
 no viso
+
+analysis methods (4S):
+Scenario: how many functions to design ? how much degress in each function ?
+Service: split big system into small pieces of macro services
+Storage: how data store and access ?
+Scale: fix bottle-neck, and potential issues
