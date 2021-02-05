@@ -1,0 +1,10 @@
+title: active learning
+link: https://humanloop.com/blog/why-you-should-be-using-active-learning/
+tag: active learning, data labeling
+status: done
+summary: 
+framework:
+    https://github.com/modAL-python/modAL
+    Prodigy
+    Labelbox
+    Humanloop
