@@ -1,0 +1,4 @@
+title: libre-soc.org
+link: https://libre-soc.org/
+tag: soc, RISC-V
+status: none
