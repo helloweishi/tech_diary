@@ -1,4 +1,5 @@
 title: Tiny C Compiler
 link: https://bellard.org/tcc/
+      https://bellard.org/otcc/
 tag: C, compiler
 status: none
