@@ -1,0 +1,4 @@
+title: americanscientist.org
+link: https://www.americanscientist.org
+tag: scientist, magzine
+status: none
