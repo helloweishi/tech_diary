@@ -1,0 +1,14 @@
+title: monitor mode
+link: http://books.gigatux.nl/mirror/networksecuritytools/0596007949/networkst-CHP-10-SECT-3.html
+tag: wireless, monitor
+status: none
+summary: 
+Driver/card   Command
+Cisco Aironet   Echo "mode: y" > '/proc/driver/aironet/<device>/Config'
+HostAP          iwconfig <device> mode monitor
+Orinoco (patched)     iwpriv <device> monitor 1 <channel>
+Madwifi         iwconfig <device> mode monitor
+Wlan-ng         wlanctl-ng <device> lnxreq_wlansniff channel=<channel> enable=true
+Radiotap        ifconfig <device> monitor up | custom command
+linux-wlan-ng project (http://www.linux-wlan.com/)
+ftp://ftp.linux-wlan.org/pub/linux-wlan-ng/
