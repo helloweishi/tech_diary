@@ -4,3 +4,6 @@ link: https://github.com/tmuxinator/tmuxinator
       https://github.com/tony/tmuxp
 tag: terminator managment
 status: todo
+summary:
+aternetive:
+https://github.com/martanne/dvtm
