@@ -1,0 +1,108 @@
+title: Perception Sensor Industry Map
+link: https://www.tangramvision.com/blog/the-2021-perception-sensor-industry-map
+tag: sensor, vision
+status: none
+summary: 
+ULTRASONIC --
+Magna
+Valeo
+Texas Instruments
+Continental
+Bosch
+TDK
+
+Depth sensors are used to capture 2.5D and 3D imagery --
+Consumer:
+Intel RealSense
+Structure Sensor by Occipital
+Mynt
+StereoLabs
+Sony (formerly SoftKinetic)
+Microsoft Azure Kinect
+Orbbec
+Luxonis
+pmd
+ASUS
+Industrial:
+Zivid
+Photoneo
+Ensenso
+LMI
+Cognex
+
+LiDAR (light detection and ranging) --
+Scanning:
+Velodyne Lidar
+Hokuyo
+Ouster
+Waymo Laser Bear
+Hesai
+SICK
+Quanergy
+Flash:
+AEye
+Luminar
+Velodyne Lidar
+Voyant Photonics
+Quanergy
+Sense Photonics
+Valeo
+Intel RealSense
+LeddarTech
+Aeva
+Innoviz
+
+THERMAL --
+FLIR
+Seek Thermal
+
+RADAR --
+Vayyar
+Arbe
+Uhnder
+Bosch
+Zendar
+GhostWave
+MetaWave
+Infineon
+
+CMOS --
+Embeddable:
+Canon
+Sony
+OmniVision
+ST Micro
+ams OSRAM
+Industrial:
+FLIR (Point Grey)
+Keyence
+Datalogic
+Cognex
+Basler
+
+IMUs (aka inertial measurement units) sense kinetic motion --
+Bosch Sensortec
+Xsens
+mCube
+Yost Labs
+Lord MicroStrain
+
+neuromorphic cameras (also called "event cameras") --
+Samsung
+Sony
+iniVation
+Prophesee
+
+SOFTWARE --
+Tangram Vision
+Occipital
+Kudan
+Augmented Pixels
+Arcturus Industries
+PyTorch
+TensorFlow
+Slamcore
+Outsight
+OpenCV
+Wikitude
+Aivero
