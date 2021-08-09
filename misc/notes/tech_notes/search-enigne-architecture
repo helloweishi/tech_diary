@@ -1,0 +1,22 @@
+title: search engine architecture
+link: http://highscalability.com/blog/2021/8/2/evolution-of-search-engines-architecture-algolia-new-search.html
+tag: SEO, architecture
+status: none
+summary:
+Text REtrieval Conference (TREC) : conference for search engine
+
+Inverted Index(Early Days Of Search)
+  inverted lists: book Introduction to Information Retrieval by Christopher D. Manning
+                  https://nlp.stanford.edu/IR-book/information-retrieval-book.html
+Sharding - Parallelization: 
+        A fixed number of shards distributed across different servers
+        A distributed computation of the inverted index (indexing, one thread per shard)
+        A distributed computation of the search results across the different shards (searching, one thread per shard), finalized by a fast merge of the N results
+High Availability And Scaling Of Search:
+        https://blog.senx.io/demystifying-leveldb/
+Current Challenges Of Search Engines:
+        Sub-minute addition/removal of machines, dynamic add/remove machine
+        dynamic number of shards
+        Separation of search and indexing
+        Leveraging the evolution of network bandwidth
+        Native multi-tenant optimization
