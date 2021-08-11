@@ -1,0 +1,11 @@
+title: equation and basic
+link: https://www.investopedia.com/trading/getting-to-know-the-greeks/
+      https://www.investopedia.com/terms/k/kappa.asp
+tag: fianance, basic
+status: none
+summary:
+Vega: Measures Impact of a Change in Volatility
+Theta: Measures Impact of a Change in Time Remaining
+Delta: Measures Impact of a Change in the Price of Underlying
+Gamma: Measures the Rate of Change of Delta
+Kappa: measurement of an option contract's price sensitivity to changes in the volatility of the underlying asset, also called vega
