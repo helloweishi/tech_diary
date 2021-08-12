@@ -1,0 +1,8 @@
+title: Crawling note
+link: https://www.zenrows.com/blog/mastering-web-scraping-in-python-crawling-from-scratch
+tag: search engine, crawling
+status: none
+summary: 
+projects: https://docs.scrapy.org/en/latest/
+          http://docs.pyspider.org/en/latest/
+          https://github.com/bda-research/node-crawler
