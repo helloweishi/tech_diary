@@ -1,0 +1,4 @@
+title: knowablemagazine.org
+link: https://knowablemagazine.org/mind
+tag: misc
+status: none
