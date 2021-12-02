@@ -1,0 +1,4 @@
+title: imagemagick.org
+link: https://imagemagick.org/script/index.php
+tag: image, cli
+status: none
