@@ -11,3 +11,7 @@ refer to: https://learntla.com/introduction/
 https://cp-algorithms.com/ :alg study group
 http://e-maxx.ru/algo/
 plant shape algorithm: http://algorithmicbotany.org/papers/#abop
+
+note from https://erthalion.info/2020/11/28/evolution-of-btree-index-am/
+1. fundamental challenges: how to minimize, i) read times, ii) update cost , and iii) memory (or storage) overhead.
+   optimizing the read-update-memory overheads, optimizing in any two areas negatively impacts the third
