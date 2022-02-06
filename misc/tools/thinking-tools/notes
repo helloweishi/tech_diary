@@ -1,0 +1,19 @@
+title: Thinking Tool
+link: none
+tag: think, toolbox
+status: none
+summary:
+
+Markdown notes: StackEdit https://stackedit.io
+mind-maps in ASCII: ASCIIFlow https://asciiflow.com
+hand-drawings: Witeboard https://witeboard.com/
+
+emacs ;)
+- org-mode
+- org-roam
+- eww / eaf-browser
+- pdf-tools
+- org-download
+
+[1] https://www.devontechnologies.com/apps/devonthink
+[2] https://obsidian.md/
