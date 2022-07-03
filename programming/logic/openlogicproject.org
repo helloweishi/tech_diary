@@ -1,0 +1,4 @@
+title: openlogicproject.org
+link: http://builds.openlogicproject.org/
+tag: logic, EE
+status: none
