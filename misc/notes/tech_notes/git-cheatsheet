@@ -2,3 +2,114 @@ title: git cheatsheet
 link: http://www.ndpsoftware.com/git-cheatsheet.html#loc=workspace;
 tag: git, cheatsheet
 status: none
+
+summary:
+tips:
+To unstage all files:
+git checkout -- .
+
+sparse checkout:
+git init
+git config core.sparseCheckout true
+git remote add -f origin <url>
+echo "some/dir/" >> .git/info/sparse-checkout
+echo "another/sub/tree" >> .git/info/sparse-checkout
+git pull origin master
+#add file:
+git read-tree -mu HEAD
+or
+git checkout themes/theme15
+https://git-scm.com/docs/git-sparse-checkout
+https://stackoverflow.com/questions/600079/how-do-i-clone-a-subdirectory-only-of-a-git-repository
+
+git lfs clone
+git lfs pull
+Tracking files with Git LFS:
+git lfs track "*.ogg" Tracking *.ogg
+Including/excluding Git LFS files:
+git lfs fetch -X "Assets/**"  //exclude
+git lfs fetch -I "*.ogg,*.wav"  //include
+
+debug:
+GIT_TRACE_PACKET=1
+GIT_TRACE=1
+GIT_CURL_VERBOSE=1
+
+hung up recovery:
+git checkout master -- .
+
+#fix fault
+git reflog
+# you will see a list of every thing you've
+# done in git, across all branches!
+# each one has an index HEAD@{index}
+# find the one before you broke everything
+git reset HEAD@{index}
+# magic time machine
+
+#small change with commit message
+# make your change
+git add . # or add individual files
+git commit --amend --no-edit
+# now your last commit contains that change!
+# WARNING: never amend public commits
+
+#change commit message
+git commit --amend
+
+#commit to wrong brach
+1)
+# create a new branch from the current state of master
+git branch some-new-branch-name
+# remove the last commit from the master branch
+git reset HEAD~ --hard
+git checkout some-new-branch-name
+# your commit lives in this branch now :)
+2)
+# undo the last commit, but leave the changes available
+git reset HEAD~ --soft
+git stash
+# move to the correct branch
+git checkout name-of-the-correct-branch
+git stash pop
+git add . # or add individual files
+git commit -m "your message here"
+# now your changes are on the correct branch
+3)
+git checkout name-of-the-correct-branch
+# grab the last commit to master
+git cherry-pick master
+# delete it from master
+git checkout master
+git reset HEAD~ --hard
+
+#no diff show
+git diff --staged
+
+#undo commit
+# find the commit you need to undo
+git log
+# use the arrow keys to scroll up and down in history
+# once you've found your commit, save the hash
+git revert [saved hash]
+# git will create a new commit that undoes that commit
+# follow prompts to edit the commit message
+# or just save and commit
+
+#undo a file
+# find a hash for a commit before the file was changed
+git log
+# use the arrow keys to scroll up and down in history
+# once you've found your commit, save the hash
+git checkout [saved hash] -- path/to/file
+# the old version of the file will be in your index
+git commit -m "Wow, you don't have to copy-paste to undo"
+
+#reset the state of local repo with remote orignal repo
+# get the lastest state of origin
+git fetch origin
+git checkout master
+git reset --hard origin/master
+# delete untracked files and directories
+git clean -d --force
+# repeat checkout/reset/clean for each borked branch
