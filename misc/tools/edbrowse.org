@@ -1,0 +1,4 @@
+title: edbrowse.org
+link: https://edbrowse.org/
+tag: browser, commandline
+status: none
