@@ -1,0 +1,114 @@
+title: How to catch and handle errors in bash
+link: https://www.xmodulo.com/catch-handle-errors-bash.html
+tag: bash, tips
+status: done
+summary:
+
+#1: Check the Exit Status
+a)
+if ! some_command; then
+    echo "some_command returned an error"
+fi
+
+b)
+<command1> || <command2>
+error_exit()
+{
+    echo "Error: $1"
+    exit 1
+}
+run-some-bad-command || error_exit "Some error occurred"
+
+c)
+# run some command
+status=$?
+if [ $status -eq 1 ]; then
+    echo "General error"
+elif [ $status -eq 2 ]; then
+    echo "Misuse of shell builtins"
+elif [ $status -eq 126 ]; then
+    echo "Command invoked cannot execute"
+elif [ $status -eq 128 ]; then
+    echo "Invalid argument"
+fi
+
+#2: Exit on Errors in Bash
+a)
+set -e
+# with -e option, the set command causes the bash shell to exit immediately if any subsequent command exits with a non-zero status 
+# some critical code block where no error is allowed
+# set -e is equivalent to set -o errexit
+set +e
+
+b)
+failure in pipelines to also exit a bash script, need to add -o pipefail option
+set -o pipefail -e
+true | false | true          # "false" inside the pipeline detected correctly
+echo "This will not be printed"
+
+set -o pipefail -e
+#
+# some critical code block where no error or pipeline error is allowed
+#
+set +o pipefail +e
+
+#3: Try and Catch Statements in Bash
+
+trycatch.sh
+function try()
+{
+    [[ $- = *e* ]]; SAVED_OPT_E=$?
+    set +e
+}
+
+function throw()
+{
+    exit $1
+}
+
+function catch()
+{
+    export exception_code=$?
+    (( $SAVED_OPT_E )) && set +e
+    return $exception_code
+}
+========================================================
+# Include trybatch.sh as a library
+source ./trycatch.sh
+
+# Define custom exception types
+export ERR_BAD=100
+export ERR_WORSE=101
+export ERR_CRITICAL=102
+#shell block in try run in subshell, catch will check return value of shell block in subshell
+#limitation, variable in parent shell can't be changed in subshell (scope separation)
+try
+(
+    echo "Start of the try block"
+
+    # When a command returns a non-zero, a custom exception is raised.
+    run-command || throw $ERR_BAD
+    run-command2 || throw $ERR_WORSE
+    run-command3 || throw $ERR_CRITICAL
+
+    # This statement is not reached if there is any exception raised
+    # inside the try block.
+    echo "End of the try block"
+)
+catch || {
+    case $exception_code in
+        $ERR_BAD)
+            echo "This error is bad"
+        ;;
+        $ERR_WORSE)
+            echo "This error is worse"
+        ;;
+        $ERR_CRITICAL)
+            echo "This error is critical"
+        ;;
+        *)
+            echo "Unknown error: $exit_code"
+            throw $exit_code    # re-throw an unhandled exception
+        ;;
+    esac
+}
