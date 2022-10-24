@@ -14,3 +14,7 @@ set noswapfile  " disable swap file
 
 notes:
 https://thevaluable.dev/vim-advanced/
+
+tips:
+https://stevelosh.com/blog/2010/09/coming-home-to-vim/
+https://www.openvim.com/tutorial.html
