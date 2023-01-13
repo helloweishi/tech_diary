@@ -1,0 +1,10 @@
+title: Papers from Hinton
+link: none
+tag: ml, paper
+status: none
+summary:
+info: https://www.cs.toronto.edu/~hinton/
+paper: 2023: https://www.cs.toronto.edu/~hinton/FFA13.pdf
+old: https://en.wikipedia.org/wiki/Backpropagation
+code:
+https://github.com/nebuly-ai/nebullvm/tree/main/apps/accelerate/forward_forward
