@@ -1,0 +1,4 @@
+title: freecad.org
+link: https://forum.freecad.org/index.php?sid=0aa8aa7e7ecf997a044f6e4bad0e2622
+tag: CAD, chip design
+status: none
