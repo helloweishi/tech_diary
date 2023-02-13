@@ -1,0 +1,4 @@
+title: kicad.org
+link: https://www.kicad.org/
+tag: CAD, tools
+status: none
