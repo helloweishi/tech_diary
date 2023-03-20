@@ -1,0 +1,4 @@
+title: libreboot.org
+link: https://libreboot.org/news/libreboot20230319.html
+tag: OS, coreboot
+status: none
