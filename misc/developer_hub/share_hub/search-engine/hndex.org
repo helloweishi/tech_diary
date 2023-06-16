@@ -1,4 +1,13 @@
-title: hndex.org
-link: https://hndex.org/
-tag: search engine, HN
-status: none
+title: hndex.org  
+link: https://hndex.org/  
+tag: search engine, HN      
+status: none    
+summary:
+https://kagi.com 
+ https://search.marginalia.nu/
+ DuckDuckGo
+ https://duckduckgo.com/ https://www.ecosia.org/ https://www.qwant.com/ https://www.startpage.com/
+ https://www.startpage.com
+ www.perplexity.ai
+ webcrawler.com
+ SearxNG
