@@ -5,4 +5,13 @@ status: none
 summary:
   adding a line to the /sys/kernel/debug/tracing/uprobe_events
   uprobe inject: https://www.kernel.org/doc/Documentation/trace/uprobetracer.txt
+sample: 
+  echo 'r:bashReadline /bin/bash:0xd5690 cmd=+0($retval):string' >> /sys/kernel/tracing/uprobe_events
+  # When the uprobe is added, activate it with this command:
+  echo 1 > /sys/kernel/tracing/events/uprobes/bashReadline/enable
+  # log
+  cat /sys/kernel/tracing/trace_pipe
+If you receive the error Device or resource busy while writing to the uprobe_events file, set /sys/kernel/tracing/events/uprobes/enabled to 0 and try again.
+If you receive Invalid argument, read the /sys/kernel/tracing/error_log file for details.
+Your kernel must have CONFIG_UPROBES enabled 
 
