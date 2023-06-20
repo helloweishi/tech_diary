@@ -2,3 +2,7 @@ title: go with uprobes and eBPF
 link: https://github.com/grantseltzer/oster
 tag: go, ebpf
 status: none
+summary:
+  adding a line to the /sys/kernel/debug/tracing/uprobe_events
+  uprobe inject: https://www.kernel.org/doc/Documentation/trace/uprobetracer.txt
+
