@@ -2,3 +2,5 @@ title: Rust Atomics and Locks
 link: https://marabos.nl/atomics/
 tag: rust, atomic
 status: none
+summary:
+https://www.fuzzypixelz.com/blog/deref-confusion/ :pointer issue
