@@ -90,3 +90,9 @@ system_profiler SPHardwareDataType prints an overview of the hardware of the cur
 system_profiler SPSoftwareDataType prints an overview of the software of the current machine, including the exact macOS version number.
 system_profiler SPPowerDataType prints power and battery information, including the current AC wattage and battery cycle count.
 system_profiler SPDeveloperToolsDataType prints the currently active version of the Xcode developer tools and SDK.
+
+
+Lima: Linux on Mac
+  brew install lima : limactl start default : Run lima to get a shell
+  config file in ~/.lima/default/lima.yaml
+  automatically downloads a Ubuntu 22.04 image to use in the VM
