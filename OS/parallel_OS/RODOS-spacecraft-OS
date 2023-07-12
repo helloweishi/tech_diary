@@ -5,3 +5,5 @@ link: https://en.wikipedia.org/wiki/Rodos_(operating_system)
       https://www.informatik.uni-wuerzburg.de/fileadmin/10030800/user_upload/Rodos/RODOS_how_to_begin.pdf
 tag: Satellite, OS
 status: none
+
+bug explore tools: https://github.com/fuzzware-fuzzer/fuzzware
