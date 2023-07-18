@@ -1,0 +1,4 @@
+title: glibc
+link: https://sourceware.org/git/?p=glibc.git;a=commit;h=454a20c8756c9c1d55419153255fc7692b3d2199
+tag: strlcpy, glibc
+status: none
