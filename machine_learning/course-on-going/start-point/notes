@@ -6,3 +6,6 @@ link: https://github.com/fastai/numerical-linear-algebra
       http://introtodeeplearning.com/ : MIT 6.S191
 tag: ML, self-learning
 status: none
+
+summary:
+Matrix Calculus for Deep Learning: https://explained.ai/matrix-calculus/
