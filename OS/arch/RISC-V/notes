@@ -2,3 +2,5 @@ title: notes
 link: https://twilco.github.io/riscv-from-scratch/2019/04/27/riscv-from-scratch-2.html
 tag: risc-v
 status: none
+summary:
+boot process: https://popovicu.com/posts/risc-v-sbi-and-full-boot-process/
