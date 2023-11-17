@@ -1,0 +1,4 @@
+title: newdesigncongress.org
+link: https://newdesigncongress.org/en/
+tag: research, digitised societies
+status: none
