@@ -1,0 +1,16 @@
+title: note of rust
+link: none
+tag: rust
+status: none
+
+summary:
+sample: https://github.com/pr0me/rust-for-critical-space-systems
+C-to-rust binding tool: https://github.com/rust-lang/rust-bindgen
+                        https://github.com/mozilla/cbindgen
+os for space: https://kubos-semi.com/
+              https://docs.kubos.com/1.21.0/index.html
+              https://www.freertos.org/index.html
+rust-platform:  https://github.com/rust-embedded/embedded-hal
+                https://docs.rs/embedded-hal/latest/embedded_hal/
+                https://github.com/rust-embedded/heapless
+network library for spacecraft: https://github.com/libcsp/libcsp
