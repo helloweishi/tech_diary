@@ -5,7 +5,7 @@ status: none
 summary:
 
 CPU info: https://uops.info/table.html
-    sample:
+    sample: https://salykova.github.io/matmul-cpu
           AVX and FMA operate on data stored in special 256-bit YMM registers. Each YMM register can hold up to 256/32 = 8 packed single-precision (32-bit) floats. 
           VFMADD213PS (PS stands for PackedSingle) and takes three registers (YMM1, YMM2, YMM3) as input to calculate YMM1 * YMM2 + YMM3 and store the result in YMM3
           the throughput (TP) of fused-multiply-add is 0.5 cycles/instruction or 2 instructions/cycle
