@@ -5,3 +5,4 @@ status: none
 summary:
 GUI in rust: https://github.com/pythops/impala?tab=readme-ov-file
 iwd: wireless management daemon: https://iwd.wiki.kernel.org/
+                                 https://git.kernel.org/pub/scm/network/wireless/iwd.git
