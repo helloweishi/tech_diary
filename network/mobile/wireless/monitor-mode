@@ -12,3 +12,6 @@ Wlan-ng         wlanctl-ng <device> lnxreq_wlansniff channel=<channel> enable=tr
 Radiotap        ifconfig <device> monitor up | custom command
 linux-wlan-ng project (http://www.linux-wlan.com/)
 ftp://ftp.linux-wlan.org/pub/linux-wlan-ng/
+
+beaconDB services: https://beacondb.net/
+
