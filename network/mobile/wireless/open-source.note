@@ -1,0 +1,7 @@
+title: open source projects
+link: none
+tag: wireless, note
+status: none
+summary:
+GUI in rust: https://github.com/pythops/impala?tab=readme-ov-file
+iwd: wireless management daemon: https://iwd.wiki.kernel.org/
