@@ -14,3 +14,5 @@ rust-platform:  https://github.com/rust-embedded/embedded-hal
                 https://docs.rs/embedded-hal/latest/embedded_hal/
                 https://github.com/rust-embedded/heapless
 network library for spacecraft: https://github.com/libcsp/libcsp
+
+wireguard-rs: https://git.zx2c4.com/wireguard-rs/
