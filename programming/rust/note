@@ -16,3 +16,6 @@ rust-platform:  https://github.com/rust-embedded/embedded-hal
 network library for spacecraft: https://github.com/libcsp/libcsp
 
 wireguard-rs: https://git.zx2c4.com/wireguard-rs/
+
+minijinjia: https://docs.rs/minijinja/latest/minijinja/
+
