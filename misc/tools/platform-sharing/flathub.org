@@ -1,0 +1,7 @@
+title: flathub.org
+link: https://flathub.org/
+tag: tool, Linux
+status: none
+summary:
+
+open-tv: https://github.com/Fredolx/open-tv?tab=readme-ov-file
