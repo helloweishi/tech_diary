@@ -2,3 +2,27 @@ title: Linux Enhanced BPF (eBPF) Tracing Tools
 link: http://www.brendangregg.com/ebpf.html
 tag: trace, performance, kernel
 status: todo
+
+summary:
+LWN: https://lwn.net/Articles/740157/
+tips: https://tmpout.sh/2/4.html
+
+https://ebpf.io/what-is-ebpf/
+toolchain:
+BCC (https://github.com/iovisor/bcc) : framework that enables users to write python programs with eBPF programs embedded inside them, involve application and system profiling/tracing
+
+bpftrace: (https://github.com/bpftrace/bpftrace) : 
+  bpftrace is a high-level tracing language for Linux eBPF and available in semi-recent Linux kernels (4.x). 
+  bpftrace uses LLVM as a backend to compile scripts to eBPF bytecode and makes use of BCC for interacting with 
+  the Linux eBPF subsystem as well as existing Linux tracing capabilities: kernel dynamic tracing (kprobes), user-level 
+  dynamic tracing (uprobes), and tracepoints. The bpftrace language is inspired by awk, C, and predecessor tracers such as DTrace and SystemTap.
+
+eBPF Go Library: 
+  The eBPF Go library provides a generic eBPF library that decouples the process of getting to the eBPF 
+  bytecode and the loading and management of eBPF programs. eBPF programs are typically created by writing 
+  a higher level language and then use the clang/LLVM compiler to compile to eBPF bytecode.
+
+libbpf C/C++ Library: 
+  The libbpf library is a C/C++-based generic eBPF library which helps the loading of eBPF object 
+  files generated from the clang/LLVM compiler into the kernel and generally abstracts interaction 
+  with the BPF system call by providing easy to use library APIs for applications.
