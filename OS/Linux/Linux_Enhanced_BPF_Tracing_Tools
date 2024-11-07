@@ -21,7 +21,7 @@ eBPF Go Library:
   bytecode and the loading and management of eBPF programs. eBPF programs are typically created by writing 
   a higher level language and then use the clang/LLVM compiler to compile to eBPF bytecode.
 
-libbpf C/C++ Library: 
+libbpf C/C++ Library (https://github.com/libbpf/libbpf): 
   The libbpf library is a C/C++-based generic eBPF library which helps the loading of eBPF object 
   files generated from the clang/LLVM compiler into the kernel and generally abstracts interaction 
   with the BPF system call by providing easy to use library APIs for applications.
