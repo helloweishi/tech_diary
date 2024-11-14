@@ -44,3 +44,4 @@ BPF sysctls:
 
 ##verifier
 eBPF verifier in kernel/bpf/verifier.c
+intro: https://docs.kernel.org/bpf/verifier.html
