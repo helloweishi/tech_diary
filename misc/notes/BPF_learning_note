@@ -41,3 +41,6 @@ BPF sysctls:
 /proc/sys/net/core/bpf_jit_harden: Enables or disables BPF JIT hardening
 0 	Disable, 1 	Enable, 2 	Enable for all users
 /proc/sys/net/core/bpf_jit_kallsyms: Enables or disables export of JITed programs as kernel symbols
+
+##verifier
+eBPF verifier in kernel/bpf/verifier.c
