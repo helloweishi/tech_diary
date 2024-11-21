@@ -45,3 +45,8 @@ BPF sysctls:
 ##verifier
 eBPF verifier in kernel/bpf/verifier.c
 intro: https://docs.kernel.org/bpf/verifier.html
+
+Libbpf : BPF verifer and loader
+start-point: https://github.com/libbpf/libbpf-bootstrap
+bpf for rust: https://github.com/libbpf/libbpf-rs
+log: setting the environment variable LIBBPF_LOG_LEVEL to either warn, info, or debug, and custom log callback can be set using libbpf_set_print()
