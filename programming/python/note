@@ -7,3 +7,25 @@ summary:
 embedded python: http://python.lv/2014-10-05-recap.html
                  https://micropython.org/
 extremely fast Python package and project manager: https://docs.astral.sh/uv/
+
+manage the virtualenv and dependencies, install uv and let it manage everything else just-in-time.
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+``` https://github.com/alsuren/sixdofone/pull/8/files
+sample
+```python
+#!/usr/bin/env uv run
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "flask==3.*",
+#     "rerun-sdk==0.17.0",
+#     "opencv-python==4.*",
+#     "pyquaternion==0.9.*",
+#     "pyngrok==7.*",
+#     "python-dotenv==1.*",
+#     "pymycobot==3.*",
+#     "requests==2.*",
+# ]
+# ///
+```
