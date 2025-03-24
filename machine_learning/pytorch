@@ -3,3 +3,6 @@ link: http://pytorch.org/
       http://blog.christianperone.com/2018/03/pytorch-internal-architecture-tour/
 tag: Tensors, python
 status: todo
+
+summary:
+PyTorch internals: https://blog.ezyang.com/2019/05/pytorch-internals/
