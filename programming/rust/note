@@ -25,3 +25,5 @@ rust-in-kernel: https://security.googleblog.com/2021/04/rust-in-linux-kernel.htm
 rustls crypt-lib: https://github.com/rustls/rustls
 
 effective-rust book: https://www.lurklurk.org/effective-rust/title-page.html
+
+memory safe note: https://corrode.dev/blog/pitfalls-of-safe-rust/
