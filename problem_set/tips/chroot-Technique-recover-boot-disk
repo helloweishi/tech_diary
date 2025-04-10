@@ -1,0 +1,30 @@
+title: chroot Technique to recover boot disk
+link: none
+tag: live disk, recover
+status: done
+summary:
+
+precondition:
+1, hard drive partition of the broken system that was mounted as the / folder
+2, A set of special system folders, like /sys, /proc and a few others.
+
+The process:
+1, boot Linux and mount broken boot-disk
+2, mount root and boot partition into tmp directory, like /rescue
+   sample:
+      ```
+      sudo mount /dev/nvme0n1p5 /rescue
+      sudo mount /dev/nvme0n1p3 /rescue/boot
+      ```
+3, mount in the required special folders
+  ```
+sudo mount -t proc proc /rescue/proc
+sudo mount -t sysfs sys /rescue/sys
+sudo mount -o bind /dev /rescue/dev
+sudo mount -t devpts pts /rescue/dev/pts
+  ```
+4, change rootfolder” into this newly created folder structure
+```
+chroot /rescue /bin/bash -i
+```
+5, rescue, live disk.
