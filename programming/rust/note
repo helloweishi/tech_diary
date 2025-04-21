@@ -27,3 +27,4 @@ rustls crypt-lib: https://github.com/rustls/rustls
 effective-rust book: https://www.lurklurk.org/effective-rust/title-page.html
 
 memory safe note: https://corrode.dev/blog/pitfalls-of-safe-rust/
+rust-state-machine-pattern: https://hoverbear.org/blog/rust-state-machine-pattern/
