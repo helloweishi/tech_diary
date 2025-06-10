@@ -1,0 +1,36 @@
+title: note
+link: none
+tag: self-host, tools
+status: none
+summary:
+
+Paperless: https://github.com/paperless-ngx/paperless-ngx
+  Digital document management system that scans, indexes, and organizes your physical documents with OCR and tagging capabilities
+
+https://www.photoprism.app/
+  Self-hosted Google Photos alternative with AI-powered face recognition, automatic tagging, and privacy-focused photo management
+
+https://pi-hole.net/
+  Network-wide ad blocker that acts as a DNS sinkhole to block advertisements and tracking domains across all devices on your network
+
+https://nginxproxymanager.com/
+https://github.com/NginxProxyManager/nginx-proxy-manager
+  Web-based reverse proxy management tool with SSL certificate automation and easy domain routing for self-hosted services
+
+https://www.audiobookshelf.org/
+https://github.com/advplyr/audiobookshelf
+  Self-hosted audiobook and podcast server
+  Self-hosted audiobook and podcast server with mobile apps, progress tracking, and library management features
+
+https://calibre-ebook.com/
+  Comprehensive e-book management suite for organizing, converting, and serving your digital library with web-based reading interface
+
+https://syncthing.net/
+https://github.com/syncthing/
+  Decentralized file synchronization tool that keeps folders in sync across multiple devices without cloud dependencies
+
+https://about.gitea.com/
+  Lightweight, self-hosted Git service with web interface, issue tracking, and collaboration tools for code repositories
+
+
+
