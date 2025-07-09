@@ -12,4 +12,4 @@ CPU info: https://uops.info/table.html
           Theoretically, the CPU can execute 32 FLOP per cycle = 8 (floats in YMM register) * 2 (add + mul) * 2 (1/TP)
           5.1 GHz in single-threaded tasks = 5.1GHz * 32 FLOP/cycle = 163 GFLOPS for single-threaded matmul
 
-          
+simd.info: https://simd.info/
