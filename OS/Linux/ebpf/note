@@ -1,0 +1,12 @@
+title: ebpf notes
+link: none
+tag: tips, ebpf
+status: none
+summary:
+CO-RE: https://github.com/aquasecurity/btfhub/blob/main/docs/btfgen-internals.md
+
+blog: https://nakryiko.com/
+
+project:
+https://docs.cilium.io/en/stable/reference-guides/bpf/index.html
+https://docs.kernel.org/bpf/index.html
