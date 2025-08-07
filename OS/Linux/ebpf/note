@@ -13,3 +13,10 @@ https://docs.kernel.org/bpf/index.html
 
 stackoverflow: https://stackoverflow.com/questions/tagged/ebpf
 slack: http://ebpf.io/slack
+
+BTF:
+command to check if kernel have its ELF .BTF section information : bpftool btf dump file /sys/kernel/btf/vmlinux format raw
+.BTF ELF sections: contains information about all BTF types used within this object
+.BTF.ext : contains debug information about function prototypes, line numbers and, when encoded by LLVM, information about needed relocations to load the ELF object.
+generate a BTF file: https://github.com/kinvolk/libbpf/tree/btfgen
+                     https://github.com/kinvolk/btfgen
