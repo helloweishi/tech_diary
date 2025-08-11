@@ -113,3 +113,6 @@ git reset --hard origin/master
 # delete untracked files and directories
 git clean -d --force
 # repeat checkout/reset/clean for each borked branch
+
+
+Tab-Completions for Bash and Zsh: https://mill-build.org/blog/14-bash-zsh-completion.html
