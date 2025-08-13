@@ -1,0 +1,14 @@
+title: nexusrouter
+link: https://nexusrouter.com/docs/installation
+tag: project, sample
+status: done
+summary:
+
+download with install:
+curl -fsSL https://nexusrouter.com/install | bash
+
+running with docker:
+docker pull ghcr.io/grafbase/nexus:latest
+docker run -p 8000:8000 \
+  -v $(pwd)/nexus.toml:/etc/nexus.toml \
+  ghcr.io/grafbase/nexus:latest
