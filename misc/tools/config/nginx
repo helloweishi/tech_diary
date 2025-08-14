@@ -1,0 +1,44 @@
+title: nginx
+link: none
+tag: web server, note
+summary:
+
+ACME(Automated Certificate Management Environment) : https://github.com/nginx/nginx-acme
+                                                     open source pre-built package: https://nginx.org/en/linux_packages.html
+                                                     https://nginx.org/en/docs/http/ngx_http_acme_module.html
+                                                     new module ngx_http_acme_module: SSL/TLS certificate management : Let’s Encrypt initiative
+1. Setting up the ACME Server:
+acme_issuer letsencrypt { 
+    uri         https://acme-v02.api.letsencrypt.org/directory; 
+    # contact   admin@example.test; 
+    state_path  /var/cache/nginx/acme-letsencrypt; 
+
+    accept_terms_of_service; 
+}
+2. Allocating Shared Memory 
+acme_shared_zone zone=acme_shared:1M; 
+    default size of 256K
+3. Configuring Challenges 
+server { 
+    # listener on port 80 is required to process ACME HTTP-01 challenges 
+    listen 80; 
+
+    location / { 
+        #Serve a basic 404 response while listening for challenges 
+        return 404; 
+    } 
+}
+4. Certificate Issuance and Renewal
+server { 
+
+    listen 443 ssl; 
+
+    server_name  .example.com; 
+
+    acme_certificate letsencrypt; 
+
+    ssl_certificate       $acme_certificate; 
+    ssl_certificate_key   $acme_certificate_key; 
+    ssl_certificate_cache max=2; 
+}
+# Use the $acme_certificate and $acme_certificate_key variables in the module to pass the SSL certificate and key information for the associated domain.  
