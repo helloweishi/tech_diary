@@ -42,3 +42,6 @@ server {
     ssl_certificate_cache max=2; 
 }
 # Use the $acme_certificate and $acme_certificate_key variables in the module to pass the SSL certificate and key information for the associated domain.  
+
+
+trusted HTTPS certificates: https://anchor.dev/relay
