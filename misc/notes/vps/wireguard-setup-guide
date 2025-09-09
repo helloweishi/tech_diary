@@ -1,0 +1,46 @@
+title: wireguard setup guide
+link: https://mikkel.hoegh.org/2019/11/01/home-vpn-server-wireguard/
+tag: vpn, setup
+status: none
+summary: 
+
+1, Server
+  Generate a private key : wg genkey 
+
+/etc/wireguard/wg0.conf
+[Interface]
+PrivateKey = 6NJepbdEduV97+exampleprivatekeydontusethis=
+Address = 10.14.0.0/24
+ListenPort = 51820
+
+[Peer]
+# My laptop (this is just a comment, change it to identify the device)
+PublicKey = SOMETHINGSOMETHING+clientpublickeyhere=
+AllowedIPs = 10.14.0.10/32
+
+#replace eth0 with the interface open to the internet (e.g might be wlan0 if wifi)
+PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+
+enable channel: sudo wg-quick up wg0
+check status: sudo wg
+
+/etc/sysctl.conf
+net.ipv4.ip_forward=1
+net.ipv6.conf.all.forwarding=1
+
+2, Client
+create a new tunnel, fills out the PrivateKey field
+Copy the generated public key, put it in to the server configuration.
+configuration:
+
+[Interface]
+PrivateKey = SOMETHINGSOMETHING+clientprivatekeyhere=
+Address = 10.14.0.10/32
+DNS = 10.42.0.1
+
+[Peer]
+PublicKey = ASDFJKASDFSERVERPublicKEyHERE=
+AllowedIPs = 0.0.0.0/0, ::/0
+Endpoint = you.example.net:51820
+
