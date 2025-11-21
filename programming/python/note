@@ -31,3 +31,6 @@ sample
 ```
 
 performance improvement tips: https://blog.jetbrains.com/pycharm/2025/11/10-smart-performance-hacks-for-faster-python-code/
+1: Membership testing with a list (x in some_list) requires scanning each element one by one, time complexity (O(n))
+   sets in Python are implemented as hash tables, which allow for constant-time (O(1)) lookups on average.
+2: Avoid unnecessary copies 
