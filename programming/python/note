@@ -29,3 +29,5 @@ sample
 # ]
 # ///
 ```
+
+performance improvement tips: https://blog.jetbrains.com/pycharm/2025/11/10-smart-performance-hacks-for-faster-python-code/
