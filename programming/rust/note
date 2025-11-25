@@ -30,3 +30,5 @@ memory safe note: https://corrode.dev/blog/pitfalls-of-safe-rust/
 rust-state-machine-pattern: https://hoverbear.org/blog/rust-state-machine-pattern/
 
 Elements of Rust: https://rustcurious.com/elements/
+
+rust performance book: https://nnethercote.github.io/perf-book/title-page.html
