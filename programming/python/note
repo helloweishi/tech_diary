@@ -42,3 +42,5 @@ performance improvement tips: https://blog.jetbrains.com/pycharm/2025/11/10-smar
 8: Use itertools for combinatorial operations
 9: Use bisect for sorted list operations
 10: Avoid repeated function calls in loops
+
+book for data science: https://jakevdp.github.io/PythonDataScienceHandbook/
