@@ -44,3 +44,21 @@ performance improvement tips: https://blog.jetbrains.com/pycharm/2025/11/10-smar
 10: Avoid repeated function calls in loops
 
 book for data science: https://jakevdp.github.io/PythonDataScienceHandbook/
+
+project package management:
+1) python -m venv  .venv
+   source .venv/bin/activate
+   edit pyproject.toml
+      [project]
+        name = "project_name"
+        version = "0.1.0"
+        dependencies = [
+          "module==version_name"
+        ]
+   pip install -e .
+2) edit pyproject.toml
+      [project]
+        name = "project_name"
+        version = "0.1.0"
+    uv add library_name(depends on)
+    publish, co-worker can setup via "uv sync" or "uv run main.py"
