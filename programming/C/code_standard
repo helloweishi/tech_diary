@@ -2,3 +2,6 @@ title: C Coding Standard
 link: https://www.securecoding.cert.org/confluence/display/c/SEI+CERT+C+Coding+Standard
 tag: C, coding safety
 status: todo
+
+summary:
+propose for improvement: https://thephd.dev/_vendor/future_cxx/papers/C%20-%20Functions%20with%20Data%20-%20Closures%20in%20C.html
