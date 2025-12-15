@@ -1,0 +1,4 @@
+title: capros
+link: https://www.capros.org/project/build.html
+tag: os, object-capabilities
+status: none
