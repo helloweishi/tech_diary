@@ -1,0 +1,6 @@
+title: dependency tooling
+link: https://codeberg.org/forgejo/forgejo
+      https://forgejo.org/releases/
+      https://github.com/dependabot/dependabot-core
+tag: dependency tracking
+status: none
