@@ -9,3 +9,5 @@ text-to-speech : Pocket TTS: cli: uvx pocket-tts serve
                  https://github.com/kyutai-labs/pocket-tts
 
 Secure messagingo over BLE, WIFI or Tor: https://briarproject.org
+
+openwork : Claude Cowork alternative, LLM skill builder: https://github.com/different-ai/openwork
