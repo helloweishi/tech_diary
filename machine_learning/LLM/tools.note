@@ -7,3 +7,5 @@ speech-to-text : https://github.com/cjpais/Handy
                  superwhisper
 text-to-speech : Pocket TTS: cli: uvx pocket-tts serve
                  https://github.com/kyutai-labs/pocket-tts
+
+Secure messagingo over BLE, WIFI or Tor: https://briarproject.org
