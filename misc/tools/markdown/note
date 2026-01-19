@@ -7,3 +7,5 @@ summary:
 aternative: https://docutils.sourceforge.io/rst.html
 
 mdBook: https://rust-lang.github.io/mdBook/ : command line tool to create books with Markdown.
+
+opal: site editor and publisher: https://github.com/rbbydotdev/opal
