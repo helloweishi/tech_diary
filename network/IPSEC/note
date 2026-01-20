@@ -5,3 +5,6 @@ status: none
 summary:
  https://wigle.net/ : crowd-sourced database from recreational wardrivers
  https://beacondb.net/ : self described “public domain wireless geolocation database
+
+bitchat: decentralized peer-to-peer messaging application that operates over bluetooth mesh networks
+         https://bitchat.free/
