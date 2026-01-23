@@ -9,3 +9,4 @@ summary:
 bitchat: decentralized peer-to-peer messaging application that operates over bluetooth mesh networks
          https://bitchat.free/
          aternative: https://github.com/markqvist/Reticulum
+stunnel(TLS encryption proxy): https://www.stunnel.org/docs.html
