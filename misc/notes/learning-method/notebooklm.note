@@ -1,0 +1,62 @@
+title: notebooklm + youtube + longcut
+link: none
+tag: learning, tools
+status: none
+summary:
+##prompts:
+general role:
+Act as professor, who have very good hand-on and methodology skills, know how to unlock insight of something difficult and present knowlege in hierarchy with practical examples,
+Guide CS students to demystify new knowledge step by step.
+
+#overview:
+give an overview of main idea and insight of this book's anchor
+
+#knowledge structure
+takes information, digests and analyzes it 
+
+#details:
+For each chapter
+1) give summary of the "main ideas" and "concepts" in hierarchy
+2) list all the key "learning points" and "takeaways"
+3) distill chapter by chapter
+
+#tips:
+a) create one main notebook, and then topic-based notebooks from there
+Draft the outline of a blog post for that feature
+b) Use NotebookLM to connect the dots from different materials
+design inspo images
+c) Start with the suggested questions
+d) Ask NotebookLM to deliver info in different ways
+turn your uploaded content into an FAQ, a briefing document, a timeline, a table of contents, a study guide...
+e) ask NotebookLM for creative input 
+f) ask NotebookLM to summarize the key points from the conversation into a single note that goes in that notebook
+
+Elite users optimize for `clarity`, not completeness. 
+They ask what’s `missing`, not just what’s there. 
+They understand that the quality of insight is proportional to the `depth of questioning`.
+g) How Elite Users Build Knowledge
+    layer strategically across time.
+• Layer 1 (Day 1): Upload 3–5 core sources. Generate Audio Overview. Ask: “What are the main frameworks?”
+• Layer 2 (Day 3): Add 10–15 supporting sources. Generate a new Audio Overview. Ask: “How do these challenge the foundation?”
+• Layer 3 (Day 7): Add opposing perspectives. Create Mind Map of competing views.
+• Layer 4 (Day 14): Upload YOUR notes. Ask: “Where do my ideas diverge from expert consensus?”
+h) analyzes what sources avoid saying.
+• Step 1: Upload 15–30 documents on the same topic.
+• Step 2: Enter the prompt: “Create a table of all major topics mentioned.”
+• Step 2: Ask about coverage gaps. For example, “Which topics appear in only 1 or 2 sources?” and “What obvious questions raised by the topic are NOT answered in the documents?” Also ask, “What relevant issues related to the main topic are absent from most sources?”
+• Step 3: Generate hypotheses by asking, “Why might this specific topic be underrepresented in the sources?” and “Who stands to benefit if this topic is left unaddressed or omitted?”
+i) Recursive Deepening Protocol, The Five-Level Drilling System
+• Round 1 — Foundation: Ask a broad question. Select the 3 most interesting points from the answer.
+• Round 2 — Expansion: For each point: “Explain in depth with examples.” Note 2: Most interesting sub-points = 6 total.
+• Round 3 — Connection: “How do these 6 sub-points connect?” Generate Mind Map.
+• Round 4 — Application: “Give me 5 concrete ways to apply these insights.” Select 2 most viable.
+• Round 5 — Validation: “What would prove these applications wrong?” Design implementation with safeguards.
+j) The patterns above (Layering, Negative Space, Recursive Deepening) are the foundation of a larger system.
+
+#external:
+Identifying Central Themes and Ideas
+Summarise the core theme and three main ideas presented in this book. For each idea, provide supporting evidence or examples from the text and explain their significance to the overall message.
+
+prompts for Infographic
+https://gemini.google.com/share/1ed2117d55a6
+https://gemini.google.com/share/88e748e86990
