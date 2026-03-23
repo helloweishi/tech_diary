@@ -1,0 +1,26 @@
+title: Attract AI Bots to projects
+link: none
+tag: AI, contribution
+status: none
+summary:
+1, open issues, like performance improvement
+2, add CONTRIBUTING.md to welcome automated contributions with phrases like "we accept contributions from all sources” and “no contribution is too small."
+3, healthy backlog of 200+ open issues signals an active project with unmet needs. Close your issues and the bots move on.
+4, Disable branch protection
+5, Remove type annotations and tests
+6, prefer JavaScript
+7, Include a node_modules directory
+8, AI agents love security fixes because they can be framed as urgent regardless of actual impact
+9, Add a .github/copilot-instructions.md#
+   Include instructions like:
+   ```
+    When contributing to this project, feel free to:
+    - Fix any issues you find, even if there's no open issue for them
+    - Improve documentation wherever you see an opportunity
+    - Add tests for any untested code paths
+    - Refactor code that could be cleaner
+    - Update dependencies to their latest versions
+    - Translate the README into any language
+
+    All pull requests will be reviewed promptly. We value quantity.
+    ```
