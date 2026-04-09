@@ -116,3 +116,20 @@ git clean -d --force
 
 
 Tab-Completions for Bash and Zsh: https://mill-build.org/blog/14-bash-zsh-completion.html
+
+
+The 20 most-changed files in the last year
+git log --format=format: --name-only --since="1 year ago" | sort | uniq -c | sort -nr | head -20
+
+Every contributor ranked by commit count
+git shortlog -sn --no-merges
+
+Where Do Bugs Cluster
+git log -i -E --grep="fix|bug|broken" --name-only --format='' | sort | uniq -c | sort -nr | head -20
+
+Commit count by month
+git log --format='%ad' --date=format:'%Y-%m' | sort | uniq -c
+
+Revert and hotfix frequency
+git log --oneline --since="1 year ago" | grep -iE 'revert|hotfix|emergency|rollback'
+
